@@ -8,6 +8,7 @@ const router = express.Router();
 
 // ------------------------------------------------------------------------------------ //
 
+// LOGIN
 router.post( '/', asyncHandler( async (req, res, next) => {
   const { credential, password } = req.body;
   const user = await User.login({ credential, password });
@@ -26,9 +27,12 @@ router.post( '/', asyncHandler( async (req, res, next) => {
   return res.json({ user });
 }))
 
+// LOGOUT
 router.delete( '/', (_req, res) => {
   res.clearCookie('token');
   return res.json({ message: 'SUCCESS' });
 });
+
+// ------------------------------------------------------------------------------------ //
 
 module.exports = router;
