@@ -1,15 +1,28 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
+const { check } = require('express-validator');
 
-const { setTokenCookie, restoreUser } = require('../../utils/auth');
+const { setTokenCookie, restoreUser } = require('../../utils/auth.js');
 const { User } = require('../../db/models');
+const { handleValidationErrors } = require('../../utils/validation.js');
 
 const router = express.Router();
+
+const validateLogin = [
+  check('credential')
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage('Please provide a valid eMail or username'),
+  check('password')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a password'),
+  handleValidationErrors
+];
 
 // ------------------------------------------------------------------------------------ //
 
 // RESTORE SESSION USER
-router.get( '/', (req, res) => {
+router.get( '/', restoreUser, (req, res) => {
   const { user } = req;
   if (user) {
     return res.json({
@@ -21,7 +34,7 @@ router.get( '/', (req, res) => {
 });
 
 // LOGIN
-router.post( '/', asyncHandler( async (req, res, next) => {
+router.post( '/', validateLogin, asyncHandler( async (req, res, next) => {
   const { credential, password } = req.body;
   const user = await User.login({ credential, password });
 
@@ -37,7 +50,7 @@ router.post( '/', asyncHandler( async (req, res, next) => {
   await setTokenCookie(res, user);
 
   return res.json({ user });
-}))
+}));
 
 // LOGOUT
 router.delete( '/', (_req, res) => {
