@@ -8,6 +8,18 @@ const router = express.Router();
 
 // ------------------------------------------------------------------------------------ //
 
+// RESTORE SESSION USER
+router.get( '/', (req, res) => {
+  const { user } = req;
+  if (user) {
+    return res.json({
+      user: user.toSafeObject()
+    });
+  } else {
+    return res.json({});
+  }
+});
+
 // LOGIN
 router.post( '/', asyncHandler( async (req, res, next) => {
   const { credential, password } = req.body;
