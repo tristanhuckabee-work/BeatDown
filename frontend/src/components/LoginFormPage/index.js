@@ -24,26 +24,27 @@ const LoginFormPage = () => {
       .catch( async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
-      });
+      }
+    );
   }
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <ul>
+        <ul id='login-errors'>
           { errors.map((err, idx) => <li key={idx}>{err}</li>)}
         </ul>
-        <label for='email'>
-          USERNAME or eMAIL
+        <label for='email' id='login-cred'>
+          eMAIL 
           <input required type='text'
             value={credential} onChange={ e => setCredential(e.target.value) } />
         </label>
-        <label for='password'>
-          PASSWORD
+        <label for='password' id='login-pass'>
+          PASSWORD 
           <input type='password' required
             value={password} onChange={ e => setPassword(e.target.value) } />
         </label>
-        <button type="submit">LOGIN</button>
+        <button type="submit" id='login-subm'>LOGIN</button>
       </form>
     </div>
   )
