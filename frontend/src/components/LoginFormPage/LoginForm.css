@@ -1,20 +1,14 @@
-form {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: repeat(3, 1fr);
-  grid-gap: 5px 20px;
-  grid-template-areas:
-  'error cred'
-  'error pass'
-  'error subm';
+#login{
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: right;
+  justify-content: space-evenly;
+  row-gap: 5px;
 
-  width: auto;
-  margin: 0 auto;
-  padding: 10px;
+  padding-top: 10px;
   border-radius: 5px;
   box-shadow: 4px 0 4px 0 #888888;
+  font-size: 1.25em;
 }
 #login-errors {
   grid-area: error;
@@ -24,31 +18,28 @@ form {
 
   list-style: none;
   font-weight: bold;
-  color: red;
+  color: #444444;
 }
-#login-cred {
-  grid-area: cred;
-  text-align: right;
-}
-#login-pass {
-  grid-area: pass;
-  text-align: right;
+#login input {
+  font-size: 1.25em;
+  border: 1px solid #cccccc;
+  border-radius: 2px;
+  background-color: #ffffff;
 }
 #login-subm {
   grid-area: subm;
-  width: 177px;
-  place-self: end;
+  width: 100%;
 
   border: 2px solid #c6a9d7;
   background-color: #c6a9d7;
-  border-radius: 5px;
-  box-shadow: 4px 0 4px 0 #888888;
+  border-radius: 0 0 5px 5px;
   font-weight: bold;
-  padding: 2px;
+  font-size: 1.25em;
+  padding: 5px;
   color: #ffffff;
 }
 #login-subm:hover {
-  border: 2px solid #c6a9d7;
-  background-color: #ffffff;
-  color: #c6a9d7;
+  border: 2px solid #ff7dc6;
+  background-color: #ff7dc6;
+  color: #ffffff;
 }
