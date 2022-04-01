@@ -34,8 +34,9 @@ router.get( '/', restoreUser, (req, res) => {
 });
 
 // LOGIN
-router.post( '/', validateLogin, asyncHandler( async (req, res, next) => {
+router.post( '/', asyncHandler( async (req, res, next) => {
   const { credential, password } = req.body;
+  console.log('SESSION ROUTE', credential, password);
   const user = await User.login({ credential, password });
 
   if (!user) {
