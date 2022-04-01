@@ -22,9 +22,16 @@ export const login = (user) => async (dispatch) => {
   });
   const data = await response.json();
 
-  dispatch(setUser(data.user));
+  dispatch( setUser(data.user) );
   return response;
 };
+export const restoreUser = () => async (dispatch) => {
+  const response = await csrfFetch('/api/session');
+  const data = await response.json();
+
+  dispatch( setUser(data.user) );
+  return response;
+}
 
 const sessionReducer = (state = initialState, action) => {
   let newState;
