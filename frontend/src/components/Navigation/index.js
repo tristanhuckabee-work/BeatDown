@@ -32,6 +32,9 @@ const Navigation = ({ isLoaded }) => {
   return (
     <header>
       <div>
+        <NavLink exact to='/'>
+          <img src='../../images/logo.svg' alt='BeatDown logo' />
+        </NavLink>
         <NavLink exact to='/'>HOME</NavLink>
       </div>
       <div className='nav-right'>

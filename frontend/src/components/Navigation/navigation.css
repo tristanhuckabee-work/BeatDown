@@ -11,7 +11,7 @@ header a {
   color: #ffffff;
 }
 header a:hover {
-  color: #fbd16b;
+  color: #ff0000;
 }
 .login-signup {
   display: flex;
@@ -19,27 +19,30 @@ header a:hover {
   justify-content: space-evenly;
 }
 .signup-btn a {
-  background-color: #fbd16b;
-  border: 2px solid #fbd16b;
-  border-radius: 5px;
+  background-color: #ff0000;
+  border: 2px solid #ff0000;
+  border-radius: 3px;
   padding: 5px 10px;
   margin-left: 10px;
   text-decoration: none;
   color: #252525;
   font-weight: bold;
+  transition: all .2s linear;
 }
 .signup-btn a:hover {
   background-color: #252525;
-  color: #fbd16b;
+  border-color: #ffffff;
+  color: #ffffff;
 }
 #user-btn {
   background-color: #252525;
   border: 1px solid transparent;
   cursor: pointer;
   color: #ffffff;
+  transition: all .2s linear;
 }
 #user-btn:hover {
-  color: #fbd16b;
+  color: #ff0000;
 }
 .profile-dropdown {
   position: absolute;
@@ -54,12 +57,13 @@ header a:hover {
 }
 .profile-dropdown .user { font-weight: bold; }
 .signOut {
-  background-color: #fbd16b;
+  background-color: #ff0000;
   border-radius: 5px;
   color: #252525;
   cursor: pointer;
   width: 100%;
+  transition: all .2s linear;
 }
 .signOut:hover { 
-  background-color: #353535;
-  color: #fbd16b; }
+  background-color: #cc0000;
+}
