@@ -1,3 +1,22 @@
 header {
   background-color: red;
 }
+#user-btn {
+  background: white;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+#user-btn:hover {
+  color: #fbd16b;
+}
+.profile-dropdown {
+  max-width: 150px;
+  padding: 10px;
+  text-align: center;
+  list-style: none;
+  border-radius: 5px;
+  box-shadow: 4px 0 4px 0 #888888;
+}
+.profile-dropdown .user { font-weight: bold; }
+.signOut { color: #dddddd; cursor: pointer; }
+.signOut:hover { color: #ff7dc6; }
