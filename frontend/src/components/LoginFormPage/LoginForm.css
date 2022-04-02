@@ -5,10 +5,14 @@
   justify-content: space-evenly;
   row-gap: 5px;
 
+  background-color: #252525;
   padding-top: 10px;
-  border-radius: 5px;
+  border: 1px solid #252525;
+  border-radius: 0 0 5px 5px;
   box-shadow: 4px 0 4px 0 #888888;
   font-size: 1.25em;
+  width: 70%;
+  margin: 0 15%;
 }
 #login-errors {
   grid-area: error;
@@ -18,28 +22,31 @@
 
   list-style: none;
   font-weight: bold;
-  color: #444444;
+  color: #ff0000;
 }
 #login input {
   font-size: 1.25em;
-  border: 1px solid #cccccc;
+  border: 1px solid #454545;
   border-radius: 2px;
-  background-color: #ffffff;
+  background-color: #353535;
+  color: #ffffff;
 }
 #login-subm {
   grid-area: subm;
   width: 100%;
 
-  border: 2px solid #c6a9d7;
-  background-color: #c6a9d7;
+  margin-top: 10px;
+  border: 2px solid #fbd16b;
+  background-color: #fbd16b;
   border-radius: 0 0 5px 5px;
   font-weight: bold;
   font-size: 1.25em;
   padding: 5px;
-  color: #ffffff;
+  color: #252525;
+  cursor: pointer;
 }
 #login-subm:hover {
-  border: 2px solid #ff7dc6;
-  background-color: #ff7dc6;
-  color: #ffffff;
+  border: 2px solid #353535;
+  background-color: #353535;
+  color: #fbd16b;
 }

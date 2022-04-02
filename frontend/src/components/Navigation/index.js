@@ -17,14 +17,14 @@ const Navigation = ({ isLoaded }) => {
     );
   } else {
     sessionLinks = (
-      <>
-        <div>
+      <div className='login-signup'>
+        <div className='login-btn'>
           <NavLink to='/login'>LOG-IN</NavLink>
         </div>
-        <div>
+        <div className='signup-btn'>
           <NavLink to='/signup'>REGISTER</NavLink>
         </div>
-      </>
+      </div>
     );
   }
 
@@ -34,7 +34,11 @@ const Navigation = ({ isLoaded }) => {
       <div>
         <NavLink exact to='/'>HOME</NavLink>
       </div>
-        {isLoaded && sessionLinks}
+      <div className='nav-right'>
+        <div className='userInfo'>
+          {isLoaded && sessionLinks}
+        </div>
+      </div>
     </header>
   );
 }
