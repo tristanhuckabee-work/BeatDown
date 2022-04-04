@@ -1,0 +1,42 @@
+.audioControl {
+  background-color:  #ffffff88;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  cursor: pointer;
+}
+.scrubControl {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  
+}
+.songTimer {
+  font-size: 0.9em;
+}
+.progress {
+  background-color: red;
+  cursor: pointer;
+}
+
+.trackControl {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.trackControl button {
+  color: #252525;
+  background-color: transparent;
+  border: 1px solid transparent;
+  margin: 10px 0;
+  cursor: pointer;
+}
+.trackControl button:hover {
+  color: #ff0000;
+  background-color: transparent;
+  border: 1px solid transparent;
+  margin: 10px 0;
+}

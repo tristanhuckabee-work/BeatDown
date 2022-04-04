@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignUpForm';
 import Navigation from './components/Navigation';
+import MusicPlayer from './components/MusicPlayer'
 import * as sessionActions from './store/session';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      <MusicPlayer />
       {isLoaded && (
       <Switch>
         <Route path='/login'>
