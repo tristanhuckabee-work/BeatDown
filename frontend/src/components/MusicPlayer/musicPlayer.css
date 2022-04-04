@@ -1,0 +1,123 @@
+.audioControl {
+  background-color:  #ffffff88;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  cursor: pointer;
+}
+.scrubControl {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  
+}
+.songTimer {
+  font-size: 0.9em;
+}
+
+/* PROGRESS BAR */
+.progress {
+  --bar-bg: #cccccc;
+  --seek-before-width: 0;
+  --seek-before-color: #ff0000;
+  --knobby: #252525;
+  --selectedKnobby: #454545;
+
+  appearance: none;
+  background: var(--bar-bg);
+  border-radius: 3px;
+  position: relative;
+  width: 100%;
+  height: 10px;
+  outline: none;
+}
+.progress::-webkit-slider-runnable-track {
+  background: var(--bar-bg);
+  border-radius: 3px;
+  position: relative;
+  width: 100%;
+  height: 10px;
+  outline: none;
+}
+.progres::-moz-range-track {
+  background: var(--bar-bg);
+  border-radius: 3px;
+  position: relative;
+  width: 100%;
+  height: 10px;
+  outline: none;
+}
+.progress::-moz-focus-inner {
+  border: 0;
+}
+.progress::before {
+  content: '';
+  height: 10px;
+  width: var(--seek-before-width);
+  background-color: var(--seek-before-color);
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+.progress::-moz-range-progress {
+  background-color: var(--seek-before-color);
+  border-radius: 3px;
+  height: 10px;
+}
+.progress::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 14px;
+  width: 14px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  background-color: var(--knobby);
+  cursor: pointer;
+  position: relative;
+  margin: -2px 0 0 0;
+  z-index: 3;
+  box-sizing: border-box;
+}
+.progress:active::-webkit-slider-thumb {
+  background-color: var(--selectedKnobby);
+}
+.progress::-moz-range-thumb {
+  height: 14px;
+  width: 14px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  background-color: var(--knobby);
+  cursor: pointer;
+  position: relative;
+  z-index: 3;
+  box-sizing: border-box;
+}
+.progress:active::-moz-range-thumb {
+  background-color: var(--selectedKnobby);
+}
+
+/* CONTINUE */
+.trackControl {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.trackControl button {
+  color: #252525;
+  background-color: transparent;
+  border: 1px solid transparent;
+  margin: 10px 0;
+  cursor: pointer;
+}
+.trackControl button:hover {
+  color: #ff0000;
+  background-color: transparent;
+  border: 1px solid transparent;
+  margin: 10px 0;
+}
