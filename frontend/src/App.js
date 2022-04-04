@@ -6,6 +6,7 @@ import SignupFormPage from './components/SignUpForm';
 import Navigation from './components/Navigation';
 import MusicPlayer from './components/MusicPlayer'
 import * as sessionActions from './store/session';
+import song from './songs/GasGasGas.mp3';
 
 function App() {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      <MusicPlayer />
+      <MusicPlayer song={song} />
       {isLoaded && (
       <Switch>
         <Route path='/login'>
