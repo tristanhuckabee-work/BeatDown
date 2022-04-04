@@ -1,14 +1,16 @@
 header {
-  background-color: #252525;
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   height: 50px;
   padding: 0 15%;
+  /* border-bottom: 1px solid black; */
+  box-shadow: 5px 0px 5px 5px #aaaaaa;
 }
 header a {
   text-decoration: none;
-  color: #ffffff;
+  color: #252525;
 }
 header a:hover {
   color: #ff0000;
@@ -25,13 +27,13 @@ header a:hover {
   padding: 5px 10px;
   margin-left: 10px;
   text-decoration: none;
-  color: #252525;
+  color: #ffffff;
   font-weight: bold;
   transition: all .2s linear;
 }
 .signup-btn a:hover {
   background-color: #252525;
-  border-color: #ffffff;
+  border-color: #252525;
   color: #ffffff;
 }
 #user-btn {
