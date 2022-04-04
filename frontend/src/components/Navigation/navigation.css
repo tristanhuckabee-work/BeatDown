@@ -37,10 +37,10 @@ header a:hover {
   color: #ffffff;
 }
 #user-btn {
-  background-color: #252525;
+  background-color: #ffffff;
   border: 1px solid transparent;
   cursor: pointer;
-  color: #ffffff;
+  color: #252525;
   transition: all .2s linear;
 }
 #user-btn:hover {
@@ -53,15 +53,15 @@ header a:hover {
   padding: 10px;
   list-style: none;
   border-radius: 5px;
-  box-shadow: 4px 0 4px 0 #888888;
-  color: #ffffff;
-  background-color: #252525;
+  /* box-shadow: 4px 0 4px 0 #888888; */
+  color: #252525;
+  background-color: #ffffff;
 }
 .profile-dropdown .user { font-weight: bold; }
 .signOut {
   background-color: #ff0000;
   border-radius: 5px;
-  color: #252525;
+  color: #ffffff;
   cursor: pointer;
   width: 100%;
   transition: all .2s linear;
