@@ -1,12 +1,14 @@
 .audioControl {
+  box-sizing: border-box;
   background-color:  #ffffff88;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  position: absolute;
+  justify-content: space-between;
+  position: fixed;
   bottom: 0;
   width: 100%;
   cursor: pointer;
+  padding: 0 15%;
 }
 .scrubControl {
   display: flex;
@@ -123,3 +125,6 @@
   border: 1px solid transparent;
   margin: 10px 0;
 }
+/* .trackInfo {
+  width: 30vw;
+} */
