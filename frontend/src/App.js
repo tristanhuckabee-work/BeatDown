@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignUpForm';
+import CreateSongPage from './components/CreateSongPage';
 import Navigation from './components/Navigation';
 import MusicPlayer from './components/MusicPlayer'
 import * as sessionActions from './store/session';
@@ -48,6 +49,9 @@ function App() {
               )
             })}
           </div>
+        </Route>
+        <Route path='/search/songs/new'>
+          <CreateSongPage />
         </Route>
         <Route path='/login'>
           <LoginFormPage />

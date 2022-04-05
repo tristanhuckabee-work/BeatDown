@@ -13,7 +13,10 @@ const Navigation = ({ isLoaded }) => {
 
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton user={sessionUser} />
+      <>
+        <ProfileButton user={sessionUser} />
+        <NavLink to='/search/songs/new'>UPLOAD</NavLink>
+      </>
     );
   } else {
     sessionLinks = (
