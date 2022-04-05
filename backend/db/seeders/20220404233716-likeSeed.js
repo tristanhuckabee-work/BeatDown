@@ -5,11 +5,15 @@ module.exports = {
     return queryInterface.bulkInsert('Likes', [
       {
         userId: 1,
-        songId: 3
+        songId: 3,
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {
         userId: 2,
-        songId: 1
+        songId: 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
   ], {});
   },

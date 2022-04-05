@@ -5,7 +5,9 @@ module.exports = {
       return queryInterface.bulkInsert('Follows', [
         {
           followerId: 1,
-          followedId: 3
+          followedId: 3,
+          createdAt: new Date(),
+          updatedAt: new Date()
         }
     ], {});
   },

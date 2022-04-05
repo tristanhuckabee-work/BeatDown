@@ -32,33 +32,18 @@ module.exports = (sequelize, DataTypes) => {
     },
     profilePic: {
       type: DataTypes.STRING,
-      validate: {
-        len: [3, 256]
-      }
     },
     biography: {
       type: DataTypes.TEXT,
-      validate: {
-        len: [3, 256]
-      }
     },
     instagram: {
       type: DataTypes.STRING,
-      validate: {
-        len: [3, 256]
-      }
     },
     twitter: {
       type: DataTypes.STRING,
-      validate: {
-        len: [3, 256]
-      }
     },
     facebook: {
       type: DataTypes.STRING,
-      validate: {
-        len: [3, 256]
-      }
     },
   },
     {
