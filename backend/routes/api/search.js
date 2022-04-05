@@ -5,13 +5,13 @@ const db = require('../../db/models');
 // ------------------------------------------------------------------------- //
 
 router.get( '/songs', asyncHandler( async (req, res) => {
-  const songs = await db.Song.findAll({
-    include: 'User'
-  })
-  
+  const songs = await db.Song.findAll(
+    // {include: 'User'}
+    )
+
   return res.json(songs);
 }))
 
 // ------------------------------------------------------------------------- //
 
-module.exports = router
+module.exports = router;
