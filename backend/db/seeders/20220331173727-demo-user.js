@@ -19,6 +19,16 @@ module.exports = {
         email: 'sjw-queen-slay@user.io',
         username: 'iRememberTumblr',
         hashedPassword: bcrypt.hashSync('password3')
+      },
+      {
+        email: 'citypopphantom@user.io',
+        username: 'cityPopPhantom',
+        hashedPassword: bcrypt.hashSync('password3')
+      },
+      {
+        email: 'ravequeen@user.io',
+        username: 'RaveQueen',
+        hashedPassword: bcrypt.hashSync('password3')
       }
     ], {});
   },
@@ -26,7 +36,7 @@ module.exports = {
   down: (queryInterface, Sequelize) => {
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete('Users', {
-      username: { [Op.in]: ['Yung-Demo', 'VaporHax', 'iRememberTumblr'] }
+      username: { [Op.in]: ['Yung-Demo', 'VaporHax', 'iRememberTumblr', 'cityPopPhantom', 'RaveQueen'] }
     }, {});
   }
 };

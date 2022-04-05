@@ -29,7 +29,22 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [60, 60]
       }
-    }
+    },
+    profilePic: {
+      type: DataTypes.STRING,
+    },
+    biography: {
+      type: DataTypes.TEXT,
+    },
+    instagram: {
+      type: DataTypes.STRING,
+    },
+    twitter: {
+      type: DataTypes.STRING,
+    },
+    facebook: {
+      type: DataTypes.STRING,
+    },
   },
     {
       defaultScope: {
@@ -48,7 +63,17 @@ module.exports = (sequelize, DataTypes) => {
     });
 
   User.associate = function (models) {
-    // associations can be defined here
+    User.hasMany(models.Song, { foreignKey: 'artistId'});
+    User.hasMany(models.Like, { foreignKey: 'userId'});
+    User.hasMany(models.Comment, { foreignKey: 'userId'});
+    User.hasMany(models.Playlist, { foreignKey: 'userId'});
+    User.belongsToMany(models.User, {
+      through: 'Follow',
+      otherKey: 'followerId',
+      foreignKey: 'followedId',
+      as: 'followers'
+    });
+
   };
 
   User.prototype.toSafeObject = function () {

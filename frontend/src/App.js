@@ -6,7 +6,7 @@ import SignupFormPage from './components/SignUpForm';
 import Navigation from './components/Navigation';
 import MusicPlayer from './components/MusicPlayer'
 import * as sessionActions from './store/session';
-import song from './songs/GasGasGas.mp3';
+import song from './songs/DontStopTheMusic.mp3';
 
 function App() {
   const dispatch = useDispatch();
