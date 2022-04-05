@@ -1,6 +1,6 @@
 .audioControl {
   box-sizing: border-box;
-  background-color:  #ffffffcc;
+  background-color:  #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -9,6 +9,7 @@
   width: 100%;
   cursor: pointer;
   padding: 0 15%;
+  z-index: 5;
 }
 .scrubControl {
   display: flex;

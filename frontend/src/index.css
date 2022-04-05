@@ -9,6 +9,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-bottom: 75px;
+  margin-top: 75px;
 }
 .songItem {
   display: flex;
@@ -21,9 +23,11 @@ body {
   color: white;
   padding: 5px 10px;
   cursor: pointer;
+  filter: grayscale(100%)
 }
 .songItem:hover {
-  background-color: #ff0000;
+  color: #ff0000;
+  filter: grayscale(0%)
 }
 .songpage {
   display: flex;
@@ -31,7 +35,7 @@ body {
   justify-content: left;
 }
 .songpage img {
-  height: 100px;
+  height: 100px; width: 100px;
   margin: 5px 0; 
   border-radius: 5px;
 }
