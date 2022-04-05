@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { signup } from '../../store/session';
 
 import './musicPlayer.css';
 
@@ -109,7 +108,6 @@ const MusicPlayer = ({ song }) => {
 
       <div className='trackInfo'>
         <h4>{song.title}</h4>
-        <h5>{song?.User?.username}</h5>
       </div>
     </div>
   );

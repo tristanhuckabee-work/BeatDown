@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignUpForm';
+import CreateSongPage from './components/CreateSongPage';
 import Navigation from './components/Navigation';
 import MusicPlayer from './components/MusicPlayer'
 import * as sessionActions from './store/session';
@@ -42,12 +43,18 @@ function App() {
             {songsObj.map( song => {
               return (
                 <div className='songItem' key={song.id} onClick={ () => handleSongClick(song) }>
-                  <h2>{song.title}</h2>  
+                  <div className='songpage'>
+                    <img src={song.waveFile} alt="Album Cover" />
+                    <h2>{song.title}</h2>  
+                  </div>
                   <p>{song.User.username}</p>
                 </div>
               )
             })}
           </div>
+        </Route>
+        <Route path='/search/songs/new'>
+          <CreateSongPage />
         </Route>
         <Route path='/login'>
           <LoginFormPage />
