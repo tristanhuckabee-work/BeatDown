@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { signup } from '../../store/session';
 
 import './musicPlayer.css';
 
@@ -12,6 +13,7 @@ const MusicPlayer = ({ song }) => {
   const musicPlayer = useRef();
   const progress = useRef();
   const knobbyPos = useRef();
+  const currTrack = song.musicFile;
 
   useEffect( () => {
     const secs = Math.floor(musicPlayer.current.duration)
@@ -70,7 +72,7 @@ const MusicPlayer = ({ song }) => {
 
   return (
     <div className="audioControl">
-      <audio ref={musicPlayer} src={song}></audio>
+      <audio src={currTrack} ref={musicPlayer}></audio>
       <div className='scrubControl'>
         <div className="songTimer current-time">
           {
@@ -103,6 +105,11 @@ const MusicPlayer = ({ song }) => {
         <button onClick={e => changeThirty('plus')} >
           <i className='fas fa-forward-fast fa-2x'></i>
         </button>
+      </div>
+
+      <div className='trackInfo'>
+        <h4>{song.title}</h4>
+        <h5>{song?.User?.username}</h5>
       </div>
     </div>
   );
