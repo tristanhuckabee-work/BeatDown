@@ -17,7 +17,7 @@ export const getAllSongs = () => async dispatch => {
   dispatch( songs(songArray) );
 };
 
-const initialState = {};
+const initialState = { songs: [] };
 
 const SongReducer = (state = initialState, action) => {
   let newState;
