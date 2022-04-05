@@ -19,6 +19,16 @@ module.exports = {
         email: 'sjw-queen-slay@user.io',
         username: 'iRememberTumblr',
         hashedPassword: bcrypt.hashSync('password3')
+      },
+      {
+        email: 'citypopphantom@user.io',
+        username: 'cityPopPhantom',
+        hashedPassword: bcrypt.hashSync('password3')
+      },
+      {
+        email: 'ravequeen@user.io',
+        username: 'RaveQueen',
+        hashedPassword: bcrypt.hashSync('password3')
       }
     ], {});
   },
