@@ -3,7 +3,7 @@ import { csrfFetch } from './csrf';
 // ------------------------------------------------------------------------- //
 
 const SONGS = '/search/songs';
-const CREATE = '/search/songs/new';
+// const CREATE = '/search/songs/new';
 
 const initialState = { songs: [] };
 

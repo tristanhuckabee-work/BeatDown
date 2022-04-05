@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { signup } from '../../store/session';
 
 import './musicPlayer.css';
 
