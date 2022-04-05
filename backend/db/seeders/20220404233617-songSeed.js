@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('People', [
+    return queryInterface.bulkInsert('Songs', [
       {
         artistId: '4',
         title: 'Plastic Love - Mariya Takeuchi',
@@ -43,6 +43,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('People', null, {});
+    return queryInterface.bulkDelete('Songs', null, {});
   }
 };
