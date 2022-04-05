@@ -16,6 +16,7 @@ import { getAllSongs } from './store/search.js';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [currTrack, setCurrTrack] = useState(1);
   
   useEffect( () => {
     dispatch( sessionActions.restoreUser() )
@@ -24,15 +25,37 @@ function App() {
   }, [dispatch] );
   
   const songsObj = useSelector( state => state.search.songs );
+  let songList = {};
+  songsObj.forEach( song => songList[song.id] = song);
+  console.log('CURR TRACK:', currTrack)
+
+  const handleSongClick = (song) => {
+    setCurrTrack(song);
+    console.log('SONG STUFF', Object.keys(currTrack) )
+  }
 
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      <MusicPlayer song={song} />
+      <MusicPlayer song={currTrack} />
       {isLoaded && (
       <Switch>
         <Route exact path='/'>
-          <Test songs={songsObj}/>
+          {/* <Test songs={songsObj}/> */}
+          <div className='songList'>
+            <h2>TRACKS</h2>
+            <h3>Current Song: {currTrack.musicFile || 'NAH'}</h3>
+            {songsObj.map( song => {
+              return (
+                <div
+                  key={song.id}
+                  className='songItem'
+                  // onClick={ () => setCurrTrack(song.id) }
+                  onClick={ () => handleSongClick(song) }
+                  >{song.title}</div>  
+              )
+            })}
+          </div>
         </Route>
         <Route path='/login'>
           <LoginFormPage />
