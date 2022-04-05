@@ -16,14 +16,14 @@ import { getAllSongs } from './store/search.js';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  // const songsObj = useSelector( state => state.search.songs );
-
+  
   useEffect( () => {
     dispatch( sessionActions.restoreUser() )
-      .then( () => setIsLoaded(true) );
-    // dispatch( getAllSongs() );
+    .then( () => setIsLoaded(true) );
+    dispatch( getAllSongs() );
   }, [dispatch] );
-
+  
+  const songsObj = useSelector( state => state.search.songs );
 
   return (
     <>
@@ -32,7 +32,7 @@ function App() {
       {isLoaded && (
       <Switch>
         <Route exact path='/'>
-          <Test />
+          <Test songs={songsObj}/>
         </Route>
         <Route path='/login'>
           <LoginFormPage />
