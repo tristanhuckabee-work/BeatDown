@@ -10,7 +10,7 @@ import './createSong.css';
 const CreateSongPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const artistId = useSelector( state => state.session.user );
+  const sessionUser = useSelector( state => state.session.user );
   const [title, setTitle] = useState('');
   const [musicUrl, setMusicUrl] = useState('');
   const [imageUrl, setImageUrl] = useState('');
@@ -21,7 +21,7 @@ const CreateSongPage = () => {
     setErrors([]);
 
     const payload = {
-      artistId: artistId.id,
+      artistId: sessionUser.id,
       title,
       musicFile: musicUrl, 
       waveFile: imageUrl,
@@ -30,12 +30,11 @@ const CreateSongPage = () => {
     }
 
     const res = await dispatch( createSong(payload) );
-    // console.log( Object.keys(payload) );
 
     res === 'Post Successful' ? history.push('/') : setErrors(res)
   }
 
-  if (artistId) { 
+  if (sessionUser) { 
     return (
       <form onSubmit={handleSubmit} id='createSong'>
         { errors.length > 0 && (

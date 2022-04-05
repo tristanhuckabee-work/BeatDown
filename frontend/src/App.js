@@ -43,7 +43,10 @@ function App() {
             {songsObj.map( song => {
               return (
                 <div className='songItem' key={song.id} onClick={ () => handleSongClick(song) }>
-                  <h2>{song.title}</h2>  
+                  <div className='songpage'>
+                    <img src={song.waveFile} alt="Album Cover" />
+                    <h2>{song.title}</h2>  
+                  </div>
                   <p>{song.User.username}</p>
                 </div>
               )

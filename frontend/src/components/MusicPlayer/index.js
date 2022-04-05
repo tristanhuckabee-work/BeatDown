@@ -108,7 +108,6 @@ const MusicPlayer = ({ song }) => {
 
       <div className='trackInfo'>
         <h4>{song.title}</h4>
-        <h5>{song?.User?.username}</h5>
       </div>
     </div>
   );

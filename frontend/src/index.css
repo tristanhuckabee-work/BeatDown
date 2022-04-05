@@ -15,7 +15,7 @@ body {
   align-items: center;
   justify-content: space-between;
 
-  background-color: #000000;
+  background-color: #252525;
   border-radius: 3px;
   width: 70%;
   color: white;
@@ -24,4 +24,17 @@ body {
 }
 .songItem:hover {
   background-color: #ff0000;
+}
+.songpage {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+.songpage img {
+  height: 100px;
+  margin: 5px 0; 
+  border-radius: 5px;
+}
+.songpage h2 {
+  margin-left: 15px;
 }
