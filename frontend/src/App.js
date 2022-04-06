@@ -23,9 +23,30 @@ function App() {
     dispatch( getAllSongs() );
   }, [dispatch] );
   
+  const sessionUser = useSelector( state => state.session.user );
   const songsObj = useSelector( state => state.search.songs );
   let songList = {};
   songsObj.forEach( song => songList[song.id] = song);
+
+  const userPriv = (song) => {
+    if ( sessionUser.id === song.User.id) {
+      return (
+        <div className='userIcons'>
+          <i className='fas fa-delete-left fa-2x'></i>
+          <i className='fas fa-pen-to-square fa-2x'></i>
+          <i className='fas fa-heart fa-2x'></i>
+          <i className='fas fa-message fa-2x'></i>
+        </div>
+      )
+    } else {
+      return (
+        <div className='userIcons'>
+          <i className='fas fa-heart fa-2x'></i>
+          <i className='fas fa-message fa-2x'></i>
+        </div>
+      )
+    }
+  }
 
   const handleSongClick = (song) => {
     setCurrTrack(song);
@@ -47,7 +68,10 @@ function App() {
                     <img src={song.waveFile} alt="Album Cover" />
                     <h2>{song.title}</h2>  
                   </div>
-                  <p>{song.User.username}</p>
+                  <div className='userInfo'>
+                    <p>{song.User.username}</p>
+                    { userPriv(song) }
+                  </div>
                 </div>
               )
             })}

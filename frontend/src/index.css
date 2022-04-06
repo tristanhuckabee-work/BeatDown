@@ -42,3 +42,24 @@ body {
 .songpage h2 {
   margin-left: 15px;
 }
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  color: #ffffff;
+}
+.userInfo p {
+  align-self: flex-end;
+}
+.userInfo p:hover {
+  color: #ff0000;
+}
+.userIcons {
+  align-self: flex-end;
+}
+.userIcons i {
+  padding: 0 5px;
+}
+.userIcons i:hover {
+  color: #cccccc
+}
