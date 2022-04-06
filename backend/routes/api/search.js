@@ -73,8 +73,6 @@ router.delete( '/songs/:id/delete', requireAuth, asyncHandler( async (req, res) 
   const song = await db.Song.findByPk(incoming);
 
   song.destroy();
-  
-  const check = await db.Song.findByPk(incoming);
 
   return res.json('Delete Successful');
 }));
