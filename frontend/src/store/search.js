@@ -76,10 +76,10 @@ const SongReducer = (state = initialState, action) => {
       newState = { ...state };
       newState.songs = action.payload;
       return newState;
-    // case DELETE:
-    //   newState = { ...state };
-    //   newState.songs = action.payload;
-    //   return newState;
+    case DELETE:
+      newState = { ...state };
+      newState.songs = action.payload;
+      return newState;
     default:
       return state;
   }

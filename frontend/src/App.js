@@ -22,8 +22,11 @@ function App() {
   useEffect( () => {
     dispatch( sessionActions.restoreUser() )
     .then( () => setIsLoaded(true) );
-    dispatch( getAllSongs() );
+    // dispatch( getAllSongs() );
   }, [dispatch] );
+  useEffect( () => {
+    dispatch( getAllSongs() );
+  }, [dispatch])
   
   const sessionUser = useSelector( state => state.session.user );
   const songsObj = useSelector( state => state.search.songs );
