@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteSong } from '../../store/search';
+import { Modal } from '../../context/modal';
 
 import './deleteSong.css';
 
@@ -9,7 +10,8 @@ import './deleteSong.css';
 
 const DeleteSongPage = ({song}) => {
   const dispatch = useDispatch();
-  // const history = useHistory();
+  const history = useHistory();
+  const [showModal, setShowModal] = useState(false);
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -18,18 +20,13 @@ const DeleteSongPage = ({song}) => {
 
     await dispatch( deleteSong(payload) );
 
-    return <Redirect to='/' />
+    history.push('/');
   }
 
   return (
-    <div className='del-container'>;
-      <div className='del-modal'>
-        <h2>DELETE "{song.title}" ?</h2>
-        <div className='del-opts'>
-          <button onClick={handleDelete}>YES</button>
-          <button>NO</button>
-        </div>
-      </div>
+    <div className='del-modal'>
+      <h2>DELETE "{song?.title}" ?</h2>
+      <button onClick={handleDelete}>YES</button>
     </div>
   )
 };

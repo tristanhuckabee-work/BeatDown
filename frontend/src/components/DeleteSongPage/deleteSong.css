@@ -1,40 +1,23 @@
-.del-container {
-  background-color: #00000055;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position:fixed;
-  top: 0;
-  z-index: 4;
-}
 .del-modal {
   background-color: #ffffff;
   color: #252525;
   padding: 20px;
   border-radius: 5px;
+  text-align: center;
 }
-.del-opts {
-  /* background-color: red; */
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-.del-opts button {
+
+.del-modal button {
   background-color: #ff0000;
   border: 3px solid #ff0000;
   color: #ffffff;
   border-radius: 3px;
   padding: 5px 10px;
-  width: 45%;
+  width: 100%;
   cursor: pointer;
   font-weight: bold;
   transition: all .2s linear;
 }
-.del-opts button:hover {
+.del-modal button:hover {
   background-color: #252525;
   border-color: #252525;
 }
