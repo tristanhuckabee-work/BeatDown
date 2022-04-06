@@ -6,14 +6,7 @@ const db = require('../../db/models');
 
 // ------------------------------------------------------------------------- //
 
-router.get( '/songs', asyncHandler( async (req, res) => {
-  const songs = await db.Song.findAll({
-    include: 'User'
-  })
-
-  return res.json(songs);
-}))
-
+// CREATE SONG
 const songVal = [
   check('title')
     .exists({ checkFalsy: true })
@@ -45,9 +38,18 @@ router.post( '/songs/new', requireAuth, songVal, asyncHandler( async (req, res) 
   }
 }));
 
+// READ SONGS
+router.get( '/songs', asyncHandler( async (req, res) => {
+  const songs = await db.Song.findAll({
+    include: 'User'
+  })
+
+  return res.json(songs);
+}))
+
+// UPDATE SONG
 router.patch( '/songs/:id/edit', requireAuth, songVal, asyncHandler( async (req, res) => {
   const { id, title, musicFile, waveFile } = req.body;
-  console.log(req.body);
   const song = await db.Song.findByPk(id);
   const errors = validationResult(req);
 
@@ -63,7 +65,17 @@ router.patch( '/songs/:id/edit', requireAuth, songVal, asyncHandler( async (req,
     const err = errors.array().map( err => err.msg );
     return res.json(err);
   }
-}))
+}));
+
+// DELETE SONG
+router.delete( '/songs/:id/delete', requireAuth, asyncHandler( async (req, res) => {
+  const { incoming } = req.body;
+  const song = await db.Song.findByPk(incoming);
+
+  song.destroy();
+
+  return res.json('Delete Successful');
+}));
 
 // ------------------------------------------------------------------------- //
 

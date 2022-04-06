@@ -46,6 +46,17 @@ export const editSong = (song) => async dispatch => {
 
   return data;
 }
+export const deleteSong = (incoming) => async dispatch => {
+  console.log('PAYLOAD: ', incoming);
+  
+  const res = await csrfFetch('/api/search/songs/:id/delete', {
+    method: 'DELETE',
+    body: JSON.stringify({ incoming })
+  });
+  const data = await res.json();
+
+  return data;
+}
 
 const SongReducer = (state = initialState, action) => {
   let newState;

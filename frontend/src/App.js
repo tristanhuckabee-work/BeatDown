@@ -5,6 +5,8 @@ import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignUpForm';
 import CreateSongPage from './components/CreateSongPage';
 import EditSongPage from './components/EditSongPage';
+import DeleteSongPage from './components/DeleteSongPage';
+import DeleteModal from './components/DeleteSongPage/deleteModal';
 import Navigation from './components/Navigation';
 import MusicPlayer from './components/MusicPlayer';
 import Footer from './components/Footer';
@@ -19,6 +21,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [currTrack, setCurrTrack] = useState(1);
   const [editSong, setEditSong] = useState(undefined)
+  // const [showDel, setShowDel] = useState(false);
   
   useEffect( () => {
     dispatch( sessionActions.restoreUser() )
@@ -34,11 +37,15 @@ function App() {
   const handleEdit = (clicked) => {
     setEditSong(clicked);
   }
+  // const handleDelete = (clicked) => {
+  //   setEditSong(clicked);
+  //   setShowDel(true);
+  // }
   const userPriv = (song) => {
     if ( sessionUser?.id === song.User.id) {
       return (
         <div className='userIcons'>
-          <i className='fas fa-delete-left fa-2x'></i>
+          <DeleteModal song={song}/>
           <NavLink to={`/search/songs/${song.id}/edit`}>
             <i className='fas fa-pen-to-square fa-2x' onClick={ () => handleEdit(song) }></i>
           </NavLink>
@@ -90,12 +97,6 @@ function App() {
         </Route>
         <Route path='/search/songs/:id/edit'>
           <EditSongPage song={editSong} />
-        </Route>
-        <Route path='/login'>
-          <LoginFormPage />
-        </Route>
-        <Route path='/signup'>
-          <SignupFormPage />
         </Route>
       </Switch>
       )}

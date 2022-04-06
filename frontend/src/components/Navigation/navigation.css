@@ -83,6 +83,7 @@ header a:hover {
   align-items: center;
 }
 .userActions > a {
+  font-size: 1.5em;
   background-color: #ff0000;
   border: 2px solid #ff0000;
   border-radius: 3px;

@@ -5,11 +5,9 @@
   justify-content: space-evenly;
   row-gap: 5px;
 
-  padding-top: 10px;
-  border-radius: 5px;
   font-size: 1.25em;
   width: 70%;
-  margin: 75px 15% 50px 15%;
+  margin: 20px 15%;
 }
 #signup-errors {
   grid-area: error;
@@ -48,4 +46,20 @@
 #signup-subm:hover {
   border: 2px solid #cc0000;
   background-color: #cc0000;
+}
+.signup-button {
+  background-color: #ff0000;
+  border: 1px solid #ff0000;
+  border-radius: 3px;
+  padding: 5px 10px;
+  margin-left: 10px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  transition: all .2s linear;
+}
+.signup-button:hover {
+  background-color: #252525;
+  border-color: #252525;
+  color: #ffffff;
 }
