@@ -34,7 +34,7 @@ function App() {
     setEditSong(clicked);
   }
   const userPriv = (song) => {
-    if ( sessionUser.id === song.User.id) {
+    if ( sessionUser?.id === song.User.id) {
       return (
         <div className='userIcons'>
           <i className='fas fa-delete-left fa-2x'></i>
