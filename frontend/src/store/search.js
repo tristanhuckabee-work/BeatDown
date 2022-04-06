@@ -3,7 +3,7 @@ import { csrfFetch } from './csrf';
 // ------------------------------------------------------------------------- //
 
 const SONGS = '/search/songs';
-// const CREATE = '/search/songs/new';
+const CREATE = '/search/songs/new';
 
 const initialState = { songs: [] };
 
@@ -12,10 +12,10 @@ const songs = (payload) => {
   return { type: SONGS, payload
   }
 };
-// const newSong = (payload) => {
-//   return { type: CREATE, payload
-//   }
-// }
+const newSong = (payload) => {
+  return { type: CREATE, payload
+  }
+}
 
 export const getAllSongs = () => async dispatch => {
   const res = await csrfFetch('/api/search/songs');
@@ -30,6 +30,8 @@ export const createSong = (song) => async (dispatch) => {
     body: JSON.stringify({ artistId, title, musicFile, waveFile, createdAt, updatedAt })
   });
   const data = await res.json();
+
+  // dispatch( newSong(data) );
   return data;
 }
 
@@ -39,6 +41,10 @@ const SongReducer = (state = initialState, action) => {
     case SONGS:
       newState = { ...state };
       newState.songs = action.payload;
+      return newState;
+    case CREATE:
+      newState = { ...state };
+      newState.songs = newState.push( action.payload );
       return newState;
     default:
       return state;
