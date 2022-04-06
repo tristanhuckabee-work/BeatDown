@@ -20,6 +20,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [currTrack, setCurrTrack] = useState(1);
   const [editSong, setEditSong] = useState(undefined)
+  const [showDel, setShowDel] = useState(false);
   
   useEffect( () => {
     dispatch( sessionActions.restoreUser() )
@@ -35,13 +36,17 @@ function App() {
   const handleEdit = (clicked) => {
     setEditSong(clicked);
   }
+  const handleDelete = (clicked) => {
+    setEditSong(clicked);
+    setShowDel(true);
+  }
   const userPriv = (song) => {
     if ( sessionUser?.id === song.User.id) {
       return (
         <div className='userIcons'>
-          <NavLink to={`/search/songs/${song.id}/delete`}>
-            <i className='fas fa-delete-left fa-2x' onClick={ () => handleEdit(song) }></i>
-          </NavLink>
+          {/* <NavLink to={`/search/songs/${song.id}/delete`}> */}
+            <i className='fas fa-delete-left fa-2x' onClick={ () => handleDelete(song) }></i>
+          {/* </NavLink> */}
           <NavLink to={`/search/songs/${song.id}/edit`}>
             <i className='fas fa-pen-to-square fa-2x' onClick={ () => handleEdit(song) }></i>
           </NavLink>
@@ -67,6 +72,7 @@ function App() {
     <>
       <Navigation isLoaded={isLoaded} />
       <MusicPlayer song={currTrack} />
+      {showDel ? <DeleteSongPage song={editSong} /> : null}
       {isLoaded && (
       <Switch>
         <Route exact path='/'>
@@ -94,9 +100,8 @@ function App() {
         <Route path='/search/songs/:id/edit'>
           <EditSongPage song={editSong} />
         </Route>
-        <Route path='/search/songs/:id/delete'>
-          <DeleteSongPage song={editSong} />
-        </Route>
+        {/* <Route path='/search/songs/:id/delete'>
+        </Route> */}
         <Route path='/login'>
           <LoginFormPage />
         </Route>
