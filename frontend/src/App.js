@@ -5,6 +5,7 @@ import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignUpForm';
 import CreateSongPage from './components/CreateSongPage';
 import EditSongPage from './components/EditSongPage';
+import DeleteSongPage from './components/DeleteSongPage';
 import Navigation from './components/Navigation';
 import MusicPlayer from './components/MusicPlayer';
 import Footer from './components/Footer';
@@ -38,7 +39,9 @@ function App() {
     if ( sessionUser?.id === song.User.id) {
       return (
         <div className='userIcons'>
-          <i className='fas fa-delete-left fa-2x'></i>
+          <NavLink to={`/search/songs/${song.id}/delete`}>
+            <i className='fas fa-delete-left fa-2x' onClick={ () => handleEdit(song) }></i>
+          </NavLink>
           <NavLink to={`/search/songs/${song.id}/edit`}>
             <i className='fas fa-pen-to-square fa-2x' onClick={ () => handleEdit(song) }></i>
           </NavLink>
@@ -90,6 +93,9 @@ function App() {
         </Route>
         <Route path='/search/songs/:id/edit'>
           <EditSongPage song={editSong} />
+        </Route>
+        <Route path='/search/songs/:id/delete'>
+          <DeleteSongPage song={editSong} />
         </Route>
         <Route path='/login'>
           <LoginFormPage />
