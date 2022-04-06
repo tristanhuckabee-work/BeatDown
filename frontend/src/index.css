@@ -5,7 +5,7 @@ body {
 }
 .songList{
   width:100%;
-  padding: 0 15%;
+  padding: 0 20%;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -17,28 +17,86 @@ body {
   align-items: center;
   justify-content: space-between;
 
-  background-color: #252525;
-  border-radius: 3px;
-  width: 70%;
-  color: white;
+  border-bottom: 2px solid #cccccc;
+  width: 60%;
+  color: #252525;
   padding: 5px 10px;
   cursor: pointer;
-  filter: grayscale(100%)
+  /* filter: grayscale(100%) */
+  --img-blur: blur(1px);
 }
 .songItem:hover {
   color: #ff0000;
-  filter: grayscale(0%)
+  /* filter: grayscale(0%) */
+  border-color: #ff0000;
+
+  --img-blur: blur(0px);
 }
 .songpage {
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: flex-start;
 }
 .songpage img {
   height: 100px; width: 100px;
   margin: 5px 0; 
   border-radius: 5px;
+  border: 1px solid #dddddd;
+  filter: var( --img-blur )
 }
 .songpage h2 {
   margin-left: 15px;
+}
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  color: #252525;
+}
+.userInfo p {
+  align-self: flex-end;
+}
+.userInfo p:hover {
+  color: #ff0000;
+}
+.userIcons {
+  align-self: flex-end;
+}
+.userIcons i, .userIcons a {
+  padding: 0 5px;
+  color: #cccccc;
+}
+.userIcons i:hover{
+  color: #252525
+}
+
+@media screen and (max-width: 1000px) {
+  .songList {
+    padding: 0;
+    width: 100%;
+  }
+  .songItem {
+    flex-direction: column;
+    width: 100%;
+  }
+  .songpage {
+    width: 100%;
+    padding-right: 15px;
+  }
+  .userInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    text-align: center;
+  }
+  .userInfo p {
+    align-self: center;
+    width: 45vw;
+  }
+  .userIcons {
+    align-self: inherit;
+    width: 45vw
+  }
 }

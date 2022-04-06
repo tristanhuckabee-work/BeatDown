@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { createSong } from '../../store/search';
+import { editSong } from '../../store/search';
 
-import './createSong.css';
+import './editSong.css';
 
 // ------------------------------------------------------------------------- //
 
-const CreateSongPage = () => {
+const EditSongPage = ({song}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector( state => state.session.user );
-  const [title, setTitle] = useState('');
-  const [musicUrl, setMusicUrl] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
+  const [title, setTitle] = useState(song.title);
+  const [musicUrl, setMusicUrl] = useState(song.musicFile);
+  const [imageUrl, setImageUrl] = useState(song.waveFile);
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = async (e) => {
@@ -21,15 +21,13 @@ const CreateSongPage = () => {
     setErrors([]);
 
     const payload = {
-      artistId: sessionUser.id,
+      id: song.id,
       title,
       musicFile: musicUrl, 
-      waveFile: imageUrl,
-      createdAt: new Date(),
-      updatedAt: new Date()
+      waveFile: imageUrl
     }
 
-    const res = await dispatch( createSong(payload) );
+    const res = await dispatch( editSong(payload) );
 
     res === 'Post Successful' ? history.push('/') : setErrors(res)
   }
@@ -48,7 +46,7 @@ const CreateSongPage = () => {
           value={musicUrl} onChange={ e => setMusicUrl(e.target.value)} />
         <input required placeholder='Image URL' type='text'
         value={imageUrl} onChange={ e => setImageUrl(e.target.value)} />
-        <button type='submit' id='create-subm'>UPLOAD SONG</button>
+        <button type='submit' id='create-subm'>UPDATE SONG</button>
       </form>
     )
   } else {
@@ -58,4 +56,4 @@ const CreateSongPage = () => {
 
 // ------------------------------------------------------------------------- //
 
-export default CreateSongPage;
+export default EditSongPage;

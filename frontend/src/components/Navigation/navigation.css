@@ -78,3 +78,23 @@ header a:hover {
   display: flex;
   align-items: center;
 }
+.userActions {
+  display: flex;
+  align-items: center;
+}
+.userActions > a {
+  background-color: #ff0000;
+  border: 2px solid #ff0000;
+  border-radius: 3px;
+  padding: 5px 10px;
+  margin-left: 10px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  transition: all .2s linear;
+}
+.userActions > a:hover {
+  background-color: #252525;
+  border-color: #252525;
+  color: #ffffff;
+}

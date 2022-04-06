@@ -3,18 +3,20 @@ import { csrfFetch } from './csrf';
 // ------------------------------------------------------------------------- //
 
 const SONGS = '/search/songs';
-// const CREATE = '/search/songs/new';
+const CREATE = '/search/songs/new';
+const EDIT = '/search/songs/:id/edit';
 
 const initialState = { songs: [] };
 
 
 const songs = (payload) => {
-  return { type: SONGS, payload
-  }
+  return { type: SONGS, payload }
 };
 // const newSong = (payload) => {
-//   return { type: CREATE, payload
-//   }
+//   return { type: CREATE, payload }
+// }
+// const editSong = (payload) => {
+//   return { type: EDIT, payload }
 // }
 
 export const getAllSongs = () => async dispatch => {
@@ -23,13 +25,25 @@ export const getAllSongs = () => async dispatch => {
 
   dispatch( songs(songArray) );
 };
-export const createSong = (song) => async (dispatch) => {
+export const createSong = (song) => async dispatch => {
   const {artistId, title, musicFile, waveFile, createdAt, updatedAt} = song;
   const res = await csrfFetch('/api/search/songs/new', {
     method: 'POST',
     body: JSON.stringify({ artistId, title, musicFile, waveFile, createdAt, updatedAt })
   });
   const data = await res.json();
+
+  // dispatch( newSong(data) );
+  return data;
+}
+export const editSong = (song) => async dispatch => {
+  const { id, title, musicFile, waveFile } = song;
+  const res = await csrfFetch('/api/search/songs/:id/edit', {
+    method: 'PATCH',
+    body: JSON.stringify({ id, title, musicFile, waveFile })
+  });
+  const data = await res.json();
+
   return data;
 }
 
@@ -39,6 +53,10 @@ const SongReducer = (state = initialState, action) => {
     case SONGS:
       newState = { ...state };
       newState.songs = action.payload;
+      return newState;
+    case CREATE:
+      newState = { ...state };
+      newState.songs = newState.push( action.payload );
       return newState;
     default:
       return state;

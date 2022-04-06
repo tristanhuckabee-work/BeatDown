@@ -107,7 +107,7 @@ const MusicPlayer = ({ song }) => {
       </div>
 
       <div className='trackInfo'>
-        <h4>{song.title}</h4>
+        <h4>{song.title || 'NO TRACK SELECTED'}</h4>
       </div>
     </div>
   );
