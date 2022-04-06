@@ -6,7 +6,8 @@ import SignupFormPage from './components/SignUpForm';
 import CreateSongPage from './components/CreateSongPage';
 import EditSongPage from './components/EditSongPage';
 import Navigation from './components/Navigation';
-import MusicPlayer from './components/MusicPlayer'
+import MusicPlayer from './components/MusicPlayer';
+import Footer from './components/Footer';
 import * as sessionActions from './store/session';
 
 import { getAllSongs } from './store/search.js';
@@ -98,6 +99,7 @@ function App() {
         </Route>
       </Switch>
       )}
+      <Footer />
     </>
   );
 }

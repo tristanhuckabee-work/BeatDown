@@ -23,11 +23,14 @@ body {
   padding: 5px 10px;
   cursor: pointer;
   /* filter: grayscale(100%) */
+  --img-blur: blur(1px);
 }
 .songItem:hover {
   color: #ff0000;
   /* filter: grayscale(0%) */
   border-color: #ff0000;
+
+  --img-blur: blur(0px);
 }
 .songpage {
   display: flex;
@@ -38,6 +41,8 @@ body {
   height: 100px; width: 100px;
   margin: 5px 0; 
   border-radius: 5px;
+  border: 1px solid #dddddd;
+  filter: var( --img-blur )
 }
 .songpage h2 {
   margin-left: 15px;
