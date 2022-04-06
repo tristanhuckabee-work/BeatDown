@@ -17,6 +17,7 @@ function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const [currTrack, setCurrTrack] = useState(1);
+  const [editSong, setEditSong] = useState(undefined)
   
   useEffect( () => {
     dispatch( sessionActions.restoreUser() )
@@ -29,13 +30,16 @@ function App() {
   let songList = {};
   songsObj.forEach( song => songList[song.id] = song);
 
+  const handleEdit = (clicked) => {
+    setEditSong(clicked);
+  }
   const userPriv = (song) => {
     if ( sessionUser.id === song.User.id) {
       return (
         <div className='userIcons'>
           <i className='fas fa-delete-left fa-2x'></i>
-          <NavLink to='/search/songs/edit'>
-            <i className='fas fa-pen-to-square fa-2x'></i>
+          <NavLink to={`/search/songs/${song.id}/edit`}>
+            <i className='fas fa-pen-to-square fa-2x' onClick={ () => handleEdit(song) }></i>
           </NavLink>
           <i className='fas fa-heart fa-2x'></i>
           <i className='fas fa-message fa-2x'></i>
@@ -83,8 +87,8 @@ function App() {
         <Route path='/search/songs/new'>
           <CreateSongPage />
         </Route>
-        <Route path='/search/songs/new'>
-          <EditSongPage />
+        <Route path='/search/songs/:id/edit'>
+          <EditSongPage song={editSong} />
         </Route>
         <Route path='/login'>
           <LoginFormPage />

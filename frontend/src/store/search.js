@@ -4,18 +4,20 @@ import { csrfFetch } from './csrf';
 
 const SONGS = '/search/songs';
 const CREATE = '/search/songs/new';
+const EDIT = '/search/songs/:id/edit';
 
 const initialState = { songs: [] };
 
 
 const songs = (payload) => {
-  return { type: SONGS, payload
-  }
+  return { type: SONGS, payload }
 };
 const newSong = (payload) => {
-  return { type: CREATE, payload
-  }
+  return { type: CREATE, payload }
 }
+// const editSong = (payload) => {
+//   return { type: EDIT, payload }
+// }
 
 export const getAllSongs = () => async dispatch => {
   const res = await csrfFetch('/api/search/songs');
@@ -32,6 +34,16 @@ export const createSong = (song) => async (dispatch) => {
   const data = await res.json();
 
   // dispatch( newSong(data) );
+  return data;
+}
+export const editSong = (song) => async (dispatch) => {
+  const { id, title, musicFile, waveFile } = song;
+  const res = await csrfFetch('/api/search/songs/:id/edit', {
+    method: 'PATCH',
+    body: JSON.stringify({ id, title, musicFile, waveFile })
+  });
+  const data = await res.json();
+
   return data;
 }
 

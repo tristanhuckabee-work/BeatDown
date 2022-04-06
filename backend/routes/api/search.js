@@ -43,7 +43,26 @@ router.post( '/songs/new', requireAuth, songVal, asyncHandler( async (req, res) 
     const err = errors.array().map( err => err.msg );
     return res.json(err);
   }
-  return res.json('You Made The Post');
+}));
+
+router.patch( '/songs/:id/edit', requireAuth, songVal, asyncHandler( async (req, res) => {
+  const { id, title, musicFile, waveFile } = req.body;
+  console.log(req.body);
+  const song = await db.Song.findByPk(id);
+  const errors = validationResult(req);
+
+  if ( errors.isEmpty() ) {
+    song.title = title;
+    song.musicFile = musicFile;
+    song.waveFile = waveFile;
+    song.updatedAt = new Date();
+    await song.save()
+
+    return res.json('Post Successful');
+  } else {
+    const err = errors.array().map( err => err.msg );
+    return res.json(err);
+  }
 }))
 
 // ------------------------------------------------------------------------- //
