@@ -48,7 +48,7 @@ const CreateSongPage = () => {
           value={musicUrl} onChange={ e => setMusicUrl(e.target.value)} />
         <input required placeholder='Image URL' type='text'
         value={imageUrl} onChange={ e => setImageUrl(e.target.value)} />
-        <button type='submit' id='login-subm'>UPLOAD SONG</button>
+        <button type='submit' id='create-subm'>UPLOAD SONG</button>
       </form>
     )
   } else {

@@ -9,7 +9,7 @@
   border-radius: 5px;
   font-size: 1.25em;
   width: 70%;
-  margin: 50px 15%;
+  margin: 75px 15% 50px 15%;
 }
 #signup-errors {
   grid-area: error;
