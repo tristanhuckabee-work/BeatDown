@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch, NavLink } from 'react-router-dom';
-import LoginFormPage from './components/LoginFormPage';
-import SignupFormPage from './components/SignUpForm';
 import CreateSongPage from './components/CreateSongPage';
 import EditSongPage from './components/EditSongPage';
-import DeleteSongPage from './components/DeleteSongPage';
 import DeleteModal from './components/DeleteSongPage/deleteModal';
 import Navigation from './components/Navigation';
 import MusicPlayer from './components/MusicPlayer';
@@ -21,7 +18,6 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [currTrack, setCurrTrack] = useState(1);
   const [editSong, setEditSong] = useState(undefined)
-  // const [showDel, setShowDel] = useState(false);
   
   useEffect( () => {
     dispatch( sessionActions.restoreUser() )

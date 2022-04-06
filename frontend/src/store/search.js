@@ -5,6 +5,7 @@ import { csrfFetch } from './csrf';
 const SONGS = '/search/songs';
 const CREATE = '/search/songs/new';
 const EDIT = '/search/songs/:id/edit';
+const DELETE = '/search/songs/:id/delete';
 
 const initialState = { songs: [] };
 
@@ -12,11 +13,14 @@ const initialState = { songs: [] };
 const songs = (payload) => {
   return { type: SONGS, payload }
 };
-// const newSong = (payload) => {
-//   return { type: CREATE, payload }
-// }
-// const editSong = (payload) => {
+const newSong = (payload) => {
+  return { type: CREATE, payload }
+}
+// const edSong = (payload) => {
 //   return { type: EDIT, payload }
+// }
+// const delSong = (payload) => {
+//   return { type: DELETE, payload }
 // }
 
 export const getAllSongs = () => async dispatch => {
@@ -33,7 +37,6 @@ export const createSong = (song) => async dispatch => {
   });
   const data = await res.json();
 
-  // dispatch( newSong(data) );
   return data;
 }
 export const editSong = (song) => async dispatch => {
@@ -67,8 +70,16 @@ const SongReducer = (state = initialState, action) => {
       return newState;
     case CREATE:
       newState = { ...state };
-      newState.songs = newState.push( action.payload );
+      newState.songs = newState.concat( action.payload );
       return newState;
+    case EDIT:
+      newState = { ...state };
+      newState.songs = action.payload;
+      return newState;
+    // case DELETE:
+    //   newState = { ...state };
+    //   newState.songs = action.payload;
+    //   return newState;
     default:
       return state;
   }
