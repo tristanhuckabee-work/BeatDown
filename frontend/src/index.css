@@ -57,9 +57,10 @@ body {
 .userIcons {
   align-self: flex-end;
 }
-.userIcons i {
+.userIcons i, .userIcons a {
   padding: 0 5px;
+  color: #ffffff;
 }
-.userIcons i:hover {
+.userIcons i:hover{
   color: #cccccc
 }

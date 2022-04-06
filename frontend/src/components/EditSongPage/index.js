@@ -3,11 +3,11 @@ import { Redirect, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { createSong } from '../../store/search';
 
-import './createSong.css';
+import './editSong.css';
 
 // ------------------------------------------------------------------------- //
 
-const CreateSongPage = () => {
+const EditSongPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector( state => state.session.user );
@@ -58,4 +58,4 @@ const CreateSongPage = () => {
 
 // ------------------------------------------------------------------------- //
 
-export default CreateSongPage;
+export default EditSongPage;

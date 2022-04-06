@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, NavLink } from 'react-router-dom';
 import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignUpForm';
 import CreateSongPage from './components/CreateSongPage';
+import EditSongPage from './components/EditSongPage';
 import Navigation from './components/Navigation';
 import MusicPlayer from './components/MusicPlayer'
 import * as sessionActions from './store/session';
@@ -33,7 +34,9 @@ function App() {
       return (
         <div className='userIcons'>
           <i className='fas fa-delete-left fa-2x'></i>
-          <i className='fas fa-pen-to-square fa-2x'></i>
+          <NavLink to='/search/songs/edit'>
+            <i className='fas fa-pen-to-square fa-2x'></i>
+          </NavLink>
           <i className='fas fa-heart fa-2x'></i>
           <i className='fas fa-message fa-2x'></i>
         </div>
@@ -79,6 +82,9 @@ function App() {
         </Route>
         <Route path='/search/songs/new'>
           <CreateSongPage />
+        </Route>
+        <Route path='/search/songs/new'>
+          <EditSongPage />
         </Route>
         <Route path='/login'>
           <LoginFormPage />
