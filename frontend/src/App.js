@@ -31,7 +31,7 @@ function App() {
   const sessionUser = useSelector( state => state.session.user );
   const songsObj = useSelector( state => state.search.songs );
   let songList = {};
-  songsObj.forEach( song => songList[song.id] = song);
+  songsObj?.forEach( song => songList[song.id] = song);
 
   const handleEdit = (clicked) => {
     setEditSong(clicked);
@@ -40,7 +40,7 @@ function App() {
     setCurrTrack(song);
   }
   const userPriv = (song) => {
-    if ( sessionUser?.id === song.User.id) {
+    if ( sessionUser?.id === song.User?.id) {
       return (
         <div className='userIcons'>
           <DeleteModal song={song}/>
@@ -78,7 +78,7 @@ function App() {
                     <h2>{song.title}</h2>  
                   </div>
                   <div className='userInfo'>
-                    <p>{song.User.username}</p>
+                    <p>{song.User?.username}</p>
                     { userPriv(song) }
                   </div>
                 </div>
