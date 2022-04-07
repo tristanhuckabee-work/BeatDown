@@ -31,7 +31,7 @@ const ProfileButton = ({ user }) => {
   return (
     <>
       <button onClick={openMenu} id='user-btn'>
-        <i class='fas fa-user-circle fa-2x' />  
+        <i className='fas fa-user-circle fa-2x' />  
       </button>
       {showMenu && (
         <ul className='profile-dropdown'>

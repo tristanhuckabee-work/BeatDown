@@ -36,10 +36,9 @@ function App() {
   const handleEdit = (clicked) => {
     setEditSong(clicked);
   }
-  // const handleDelete = (clicked) => {
-  //   setEditSong(clicked);
-  //   setShowDel(true);
-  // }
+  const handleSongClick = (song) => {
+    setCurrTrack(song);
+  }
   const userPriv = (song) => {
     if ( sessionUser?.id === song.User.id) {
       return (
@@ -60,10 +59,6 @@ function App() {
         </div>
       )
     }
-  }
-
-  const handleSongClick = (song) => {
-    setCurrTrack(song);
   }
 
   return (
