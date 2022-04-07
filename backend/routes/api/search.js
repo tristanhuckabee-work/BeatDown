@@ -25,10 +25,10 @@ const songVal = [
 ];
 
 router.post( '/songs/new', requireAuth, songVal, asyncHandler( async (req, res) => {
-  const song = db.Song.build(req.body);
   const errors = validationResult(req);
-
+  
   if ( errors.isEmpty() ) {
+    const song = db.Song.build(req.body);
     await song.save();
     return res.json(song);
   } else {
