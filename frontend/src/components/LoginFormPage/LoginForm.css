@@ -47,13 +47,13 @@
   background-color: #cc0000;
 }
 .login-button {
-  background-color: #ff0000;
+  background-color: transparent;
   border: 1px solid #ff0000;
   border-radius: 3px;
   padding: 5px 10px;
   margin-left: 10px;
   text-decoration: none;
-  color: #ffffff;
+  color: #ff0000;
   font-weight: bold;
   transition: all .2s linear;
 }
