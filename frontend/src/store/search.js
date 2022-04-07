@@ -11,17 +11,13 @@ const initialState = { songs: [] };
 
 
 const songs = (payload) => {
-  return { type: SONGS, payload }
-};
+  return { type: SONGS, payload }};
 const newSong = (payload) => {
-  return { type: CREATE, payload }
-}
-// const edSong = (payload) => {
-//   return { type: EDIT, payload }
-// }
-// const delSong = (payload) => {
-//   return { type: DELETE, payload }
-// }
+  return { type: CREATE, payload }};
+const edSong = (payload) => {
+  return { type: EDIT, payload }};
+const delSong = (payload) => {
+  return { type: DELETE, payload }};
 
 export const getAllSongs = () => async dispatch => {
   const res = await csrfFetch('/api/search/songs');
@@ -36,7 +32,9 @@ export const createSong = (song) => async dispatch => {
     body: JSON.stringify({ artistId, title, musicFile, waveFile, createdAt, updatedAt })
   });
   const data = await res.json();
+  console.log('CREATE DATA: ', data)
 
+  dispatch( newSong(data) );
   return data;
 }
 export const editSong = (song) => async dispatch => {
@@ -46,18 +44,22 @@ export const editSong = (song) => async dispatch => {
     body: JSON.stringify({ id, title, musicFile, waveFile })
   });
   const data = await res.json();
+  console.log('UPDATE DATA: ', data)
 
+
+  dispatch( edSong(data) )
   return data;
 }
 export const deleteSong = (incoming) => async dispatch => {
-  console.log('PAYLOAD: ', incoming);
-  
   const res = await csrfFetch('/api/search/songs/:id/delete', {
     method: 'DELETE',
     body: JSON.stringify({ incoming })
   });
   const data = await res.json();
+  console.log('DELETE DATA: ', data)
 
+
+  dispatch( delSong(data) )
   return data;
 }
 
@@ -70,7 +72,7 @@ const SongReducer = (state = initialState, action) => {
       return newState;
     case CREATE:
       newState = { ...state };
-      newState.songs = newState.concat( action.payload );
+      newState.songs = newState.songs.concat( action.payload );
       return newState;
     case EDIT:
       newState = { ...state };

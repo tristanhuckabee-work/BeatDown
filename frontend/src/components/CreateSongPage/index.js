@@ -30,8 +30,10 @@ const CreateSongPage = () => {
     }
 
     const res = await dispatch( createSong(payload) );
+    console.log('INSIDE SUBMIT: ', res);
 
-    res === 'Post Successful' ? history.push('/') : setErrors(res)
+    history.push('/');
+    // res.ok ? history.push('/') : setErrors(res)
   }
 
   if (sessionUser) { 

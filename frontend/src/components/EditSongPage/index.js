@@ -29,7 +29,7 @@ const EditSongPage = ({song}) => {
 
     const res = await dispatch( editSong(payload) );
 
-    res === 'Post Successful' ? history.push('/') : setErrors(res)
+    res === 'Edit Successful' ? history.push('/') : setErrors(res)
   }
 
   if (sessionUser) { 
