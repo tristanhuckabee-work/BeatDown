@@ -80,13 +80,17 @@ const SongReducer = (state = initialState, action) => {
       return newState;
     case DELETE:
       newState = { ...state };
-      newState.songs.forEach( (song, index) => {
-        if ( song.id === action.payload ) {
-          console.log('STATE BEFORE:', newState.songs);
-          newState.songs.splice(index, 1);
-          console.log('STATE  AFTER:', newState.songs);
-        }
-      });
+      // APPEARS TO MODIFY THE ORIGINAL STATE BUT DOESN'T RERENDER PAGE
+      // newState.songs.forEach( (song, index) => {
+      //   if ( song.id === action.payload ) {
+      //     console.log('STATE BEFORE:', newState.songs);
+      //     newState.songs.splice(index, 1);
+      //     console.log('STATE  AFTER:', newState.songs);
+      //   }
+      // });
+      newState.songs = newState.songs.filter( song => {
+        if ( song.id !== action.payload ) return song;
+      })
 
       return newState;
     default:
