@@ -9,6 +9,7 @@
   font-weight: bold;
   transition: all .2s linear;
   white-space: nowrap;
+  cursor: pointer;
 }
 .demo-button:hover {
   background-color: #252525;
