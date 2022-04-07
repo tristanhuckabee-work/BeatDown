@@ -18,7 +18,7 @@ const DeleteSongPage = ({song}) => {
 
     const res = dispatch( deleteSong(payload) );
 
-    res === 'Delete Successful' ? history.push('/') : history.push('/')
+    history.push('/');
   }
 
   return (

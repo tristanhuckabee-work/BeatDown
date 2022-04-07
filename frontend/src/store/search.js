@@ -32,22 +32,19 @@ export const createSong = (song) => async dispatch => {
     body: JSON.stringify({ artistId, title, musicFile, waveFile, createdAt, updatedAt })
   });
   const data = await res.json();
-  console.log('CREATE DATA A: ', data)
   data.User = User
-  console.log('CREATE DATA A: ', data)
 
   dispatch( newSong(data) );
   return data;
 }
 export const editSong = (song) => async dispatch => {
-  const { id, title, musicFile, waveFile } = song;
+  const { id, title, musicFile, waveFile, User } = song;
   const res = await csrfFetch('/api/search/songs/:id/edit', {
     method: 'PATCH',
     body: JSON.stringify({ id, title, musicFile, waveFile })
   });
   const data = await res.json();
-  console.log('UPDATE DATA: ', data)
-
+  data.User = User;
 
   dispatch( edSong(data) )
   return data;
@@ -58,8 +55,6 @@ export const deleteSong = (incoming) => async dispatch => {
     body: JSON.stringify({ incoming })
   });
   const data = await res.json();
-  console.log('DELETE DATA: ', data)
-
 
   dispatch( delSong(data) )
   return data;
@@ -78,11 +73,21 @@ const SongReducer = (state = initialState, action) => {
       return newState;
     case EDIT:
       newState = { ...state };
-      newState.songs = action.payload;
+      newState.songs.forEach( (song, index) => {
+        if ( song.id === action.payload.id ) newState.songs[index] = action.payload;
+      });
+
       return newState;
     case DELETE:
       newState = { ...state };
-      newState.songs = action.payload;
+      newState.songs.forEach( (song, index) => {
+        if ( song.id === action.payload ) {
+          console.log('STATE BEFORE:', newState.songs);
+          newState.songs.splice(index, 1);
+          console.log('STATE  AFTER:', newState.songs);
+        }
+      });
+
       return newState;
     default:
       return state;

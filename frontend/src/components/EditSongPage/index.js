@@ -24,12 +24,15 @@ const EditSongPage = ({song}) => {
       id: song.id,
       title,
       musicFile: musicUrl, 
-      waveFile: imageUrl
+      waveFile: imageUrl,
+      User: sessionUser
     }
 
     const res = await dispatch( editSong(payload) );
+    console.log('EDITPAGE RES: ', res);
 
-    res === 'Edit Successful' ? history.push('/') : setErrors(res)
+    history.push('/');
+    // res === 'Edit Successful' ? history.push('/') : setErrors(res)
   }
 
   if (sessionUser) { 

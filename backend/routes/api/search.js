@@ -74,8 +74,7 @@ router.delete( '/songs/:id/delete', requireAuth, asyncHandler( async (req, res) 
 
   song.destroy();
 
-  return res.json('Delete Successful');
-  // return res.json('Delete Successful');
+  return res.json(incoming);
 }));
 
 // ------------------------------------------------------------------------- //
