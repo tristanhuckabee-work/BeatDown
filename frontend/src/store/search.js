@@ -26,13 +26,15 @@ export const getAllSongs = () => async dispatch => {
   dispatch( songs(songArray) );
 };
 export const createSong = (song) => async dispatch => {
-  const {artistId, title, musicFile, waveFile, createdAt, updatedAt} = song;
+  const {artistId, title, musicFile, waveFile, createdAt, updatedAt, User} = song;
   const res = await csrfFetch('/api/search/songs/new', {
     method: 'POST',
     body: JSON.stringify({ artistId, title, musicFile, waveFile, createdAt, updatedAt })
   });
   const data = await res.json();
-  console.log('CREATE DATA: ', data)
+  console.log('CREATE DATA A: ', data)
+  data.User = User
+  console.log('CREATE DATA A: ', data)
 
   dispatch( newSong(data) );
   return data;

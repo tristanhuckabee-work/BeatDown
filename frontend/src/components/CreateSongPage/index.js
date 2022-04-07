@@ -26,7 +26,8 @@ const CreateSongPage = () => {
       musicFile: musicUrl, 
       waveFile: imageUrl,
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
+      User: sessionUser
     }
 
     const res = await dispatch( createSong(payload) );

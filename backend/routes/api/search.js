@@ -31,7 +31,6 @@ router.post( '/songs/new', requireAuth, songVal, asyncHandler( async (req, res) 
   if ( errors.isEmpty() ) {
     await song.save();
     return res.json(song);
-    // return res.json('Post Successful');
   } else {
     const err = errors.array().map( err => err.msg );
     return res.json(err);
@@ -76,6 +75,7 @@ router.delete( '/songs/:id/delete', requireAuth, asyncHandler( async (req, res) 
   song.destroy();
 
   return res.json('Delete Successful');
+  // return res.json('Delete Successful');
 }));
 
 // ------------------------------------------------------------------------- //
