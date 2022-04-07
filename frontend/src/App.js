@@ -22,11 +22,11 @@ function App() {
   useEffect( () => {
     dispatch( sessionActions.restoreUser() )
     .then( () => setIsLoaded(true) );
-    // dispatch( getAllSongs() );
-  }, [dispatch] );
-  useEffect( () => {
     dispatch( getAllSongs() );
-  }, [dispatch])
+  }, [dispatch] );
+  // useEffect( () => {
+  //   return;
+  // }, [songsObj] )
   
   const sessionUser = useSelector( state => state.session.user );
   const songsObj = useSelector( state => state.search.songs );

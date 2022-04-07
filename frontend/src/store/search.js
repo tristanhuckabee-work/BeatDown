@@ -74,27 +74,19 @@ const SongReducer = (state = initialState, action) => {
       return newState;
     case EDIT:
       newState = { ...state };
-      // newState.songs.forEach( (song, index) => {
-      //   if ( song.id === action.payload.id ) newState.songs[index] = action.payload;
-      // });
-      console.log('OG STATE: ', newState);
-      newState.song = newState.songs.map( song => {
+      newState.songs = newState.songs.map( song => {
         if ( song.id === action.payload.id ) {
           return action.payload;
         } else {
           return song;
         }
       })
-      // newState.songs.forEach( (song, index) => {
-      //   if ( song.id === action.payload.id ) newState.songs[index] = action.payload;
-      // });
-      console.log('NEWSTATE: ', newState);
 
 
       return newState;
     case DELETE:
       newState = { ...state };
-      
+
       newState.songs = newState.songs.filter( song => {
         if ( song.id !== action.payload ) return song;
       })
