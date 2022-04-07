@@ -25,13 +25,12 @@ const songVal = [
 ];
 
 router.post( '/songs/new', requireAuth, songVal, asyncHandler( async (req, res) => {
-  const { artistId, title, musicFile, waveFile, createdAt, updatedAt } = req.body;
-  const song = db.Song.build({ artistId, title, musicFile, waveFile, createdAt, updatedAt });
   const errors = validationResult(req);
-
+  
   if ( errors.isEmpty() ) {
+    const song = db.Song.build(req.body);
     await song.save();
-    return res.json('Post Successful');
+    return res.json(song);
   } else {
     const err = errors.array().map( err => err.msg );
     return res.json(err);
@@ -60,7 +59,8 @@ router.patch( '/songs/:id/edit', requireAuth, songVal, asyncHandler( async (req,
     song.updatedAt = new Date();
     await song.save()
 
-    return res.json('Post Successful');
+
+    return res.json(song);
   } else {
     const err = errors.array().map( err => err.msg );
     return res.json(err);
@@ -74,7 +74,7 @@ router.delete( '/songs/:id/delete', requireAuth, asyncHandler( async (req, res) 
 
   song.destroy();
 
-  return res.json('Delete Successful');
+  return res.json(incoming);
 }));
 
 // ------------------------------------------------------------------------- //

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { deleteSong } from '../../store/search';
 
 import './deleteSong.css';
@@ -8,13 +9,16 @@ import './deleteSong.css';
 
 const DeleteSongPage = ({song}) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleDelete = async (e) => {
     e.preventDefault();
     
     const payload = song.id;
 
-    return dispatch( deleteSong(payload) );
+    const res = dispatch( deleteSong(payload) );
+
+    history.push('/');
   }
 
   return (

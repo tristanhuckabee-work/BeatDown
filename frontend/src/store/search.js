@@ -11,17 +11,13 @@ const initialState = { songs: [] };
 
 
 const songs = (payload) => {
-  return { type: SONGS, payload }
-};
+  return { type: SONGS, payload }};
 const newSong = (payload) => {
-  return { type: CREATE, payload }
-}
-// const edSong = (payload) => {
-//   return { type: EDIT, payload }
-// }
-// const delSong = (payload) => {
-//   return { type: DELETE, payload }
-// }
+  return { type: CREATE, payload }};
+const edSong = (payload) => {
+  return { type: EDIT, payload }};
+const delSong = (payload) => {
+  return { type: DELETE, payload }};
 
 export const getAllSongs = () => async dispatch => {
   const res = await csrfFetch('/api/search/songs');
@@ -30,34 +26,37 @@ export const getAllSongs = () => async dispatch => {
   dispatch( songs(songArray) );
 };
 export const createSong = (song) => async dispatch => {
-  const {artistId, title, musicFile, waveFile, createdAt, updatedAt} = song;
+  const {artistId, title, musicFile, waveFile, createdAt, updatedAt, User} = song;
   const res = await csrfFetch('/api/search/songs/new', {
     method: 'POST',
     body: JSON.stringify({ artistId, title, musicFile, waveFile, createdAt, updatedAt })
   });
   const data = await res.json();
+  data.User = User
 
+  dispatch( newSong(data) );
   return data;
 }
 export const editSong = (song) => async dispatch => {
-  const { id, title, musicFile, waveFile } = song;
+  const { id, title, musicFile, waveFile, User } = song;
   const res = await csrfFetch('/api/search/songs/:id/edit', {
     method: 'PATCH',
     body: JSON.stringify({ id, title, musicFile, waveFile })
   });
   const data = await res.json();
+  data.User = User;
 
+  dispatch( edSong(data) )
   return data;
 }
 export const deleteSong = (incoming) => async dispatch => {
-  console.log('PAYLOAD: ', incoming);
-  
   const res = await csrfFetch('/api/search/songs/:id/delete', {
     method: 'DELETE',
     body: JSON.stringify({ incoming })
   });
   const data = await res.json();
 
+  dispatch( delSong(data) )
   return data;
 }
 
@@ -70,15 +69,28 @@ const SongReducer = (state = initialState, action) => {
       return newState;
     case CREATE:
       newState = { ...state };
-      newState.songs = newState.concat( action.payload );
+      newState.songs = newState.songs.concat( action.payload );
+
       return newState;
     case EDIT:
       newState = { ...state };
-      newState.songs = action.payload;
+      newState.songs = newState.songs.map( song => {
+        if ( song.id === action.payload.id ) {
+          return action.payload;
+        } else {
+          return song;
+        }
+      })
+
+
       return newState;
     case DELETE:
       newState = { ...state };
-      newState.songs = action.payload;
+
+      newState.songs = newState.songs.filter( song => {
+        if ( song.id !== action.payload ) return song;
+      })
+
       return newState;
     default:
       return state;

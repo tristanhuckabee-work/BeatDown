@@ -15,6 +15,20 @@ const CreateSongPage = () => {
   const [musicUrl, setMusicUrl] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [errors, setErrors] = useState([]);
+  const noImg = 'https://res.cloudinary.com/dzsgront4/image/upload/v1649372610/images_ffms2y.png';
+
+  const validateInput = (object) => {
+    let errors = [];
+
+    if ( !object.title.length ) errors.push('Please enter a Title')
+    if ( !object.musicFile) {
+      errors.push('Please provide a URL for your song')
+    } else if ( !object.musicFile.startsWith('https://') ) {
+      errors.push('Please provede a URL for your song')
+    }
+
+    return errors;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,14 +38,19 @@ const CreateSongPage = () => {
       artistId: sessionUser.id,
       title,
       musicFile: musicUrl, 
-      waveFile: imageUrl,
+      waveFile: imageUrl || noImg,
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
+      User: sessionUser
     }
-
-    const res = await dispatch( createSong(payload) );
-
-    res === 'Post Successful' ? history.push('/') : setErrors(res)
+    
+    let errors = validateInput(payload);
+    if ( errors.length === 0 ) {
+      const res = await dispatch( createSong(payload) );
+      history.push('/');
+    } else {
+      setErrors(errors)
+    }
   }
 
   if (sessionUser) { 

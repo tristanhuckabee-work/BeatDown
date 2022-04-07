@@ -17,12 +17,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       musicFile: {
-        unique: true,
         allowNull: false,
         type: Sequelize.STRING
       },
       waveFile: {
-        unique: true,
         type: Sequelize.STRING
       },
       createdAt: {

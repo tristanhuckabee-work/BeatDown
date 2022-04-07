@@ -16,6 +16,19 @@ const EditSongPage = ({song}) => {
   const [imageUrl, setImageUrl] = useState(song.waveFile);
   const [errors, setErrors] = useState([]);
 
+  const validateInput = (object) => {
+    let errors = [];
+
+    if ( !object.title.length ) errors.push('Please enter a Title')
+    if ( !object.musicFile) {
+      errors.push('Please provide a URL for your song')
+    } else if ( !object.musicFile.startsWith('https://') ) {
+      errors.push('Please provede a URL for your song')
+    }
+
+    return errors;
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
@@ -24,12 +37,17 @@ const EditSongPage = ({song}) => {
       id: song.id,
       title,
       musicFile: musicUrl, 
-      waveFile: imageUrl
+      waveFile: imageUrl,
+      User: sessionUser
     }
 
-    const res = await dispatch( editSong(payload) );
-
-    res === 'Post Successful' ? history.push('/') : setErrors(res)
+    let errors = validateInput(payload);
+    if ( errors.length === 0 ) {
+      const res = await dispatch( editSong(payload) );
+      history.push('/');
+    } else {
+      setErrors(errors)
+    }
   }
 
   if (sessionUser) { 
