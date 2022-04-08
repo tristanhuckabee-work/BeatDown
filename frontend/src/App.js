@@ -46,7 +46,10 @@ function App() {
               <>
                 <DeleteModal song={song}/>
                 <NavLink to={`/search/songs/${song.id}/edit`}>
-                  <i className='fas fa-pen-to-square fa-2x' onClick={ () => handleEdit(song) }></i>
+                  <i
+                    className='fas fa-pen-to-square fa-2x'
+                    onClick={ () => handleEdit(song) }
+                  ></i>
                 </NavLink>
               </>
             )
