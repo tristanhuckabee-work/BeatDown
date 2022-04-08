@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { addOneLike, delOneLike } from '../../store/like';
+import { addOneLike, delOneLike } from '../../store/like';
 
 
 import './like.css';
@@ -12,8 +12,13 @@ const Like = ({ song }) => {
   const sessionUser = useSelector( state => state.session.user );
   const likes = useSelector( state => state.likes );
   const [likeStatus, setLikeStatus] = useState('unliked')
-  const [style, setStyle] = useState(likeStatus === 'liked' ? {'color':'#f00'} : {'color':'#ccc'})
   const [likeId, setLikeId] = useState();
+  let color;
+  if (likeStatus === 'liked') {
+    color = {'color':'#f00'}
+  } else if (likeStatus === 'unliked') {
+    color = {'color':'#ccc'}
+  }
   
   useEffect( () => {
     let likedSongs = [];
@@ -29,18 +34,23 @@ const Like = ({ song }) => {
   
   const handleLike = async (e) => {
     e.stopPropagation()
-    console.log(song.title, likeStatus)
+    
+    let payload = {
+      userId: sessionUser.id,
+      songId: song.id
+    }
 
-    // if (likeStatus === 'liked') {
-    //   console.log('UNLIKED');
-    //   setLikeStatus('unliked');
-    //   //dispatch delete
-    //   // let res = await dispatch( delOneLike(payload) )
-    // } else if (likeStatus === 'unliked') {
-    //   console.log('LIKED');
-    //   setLikeStatus('liked');
-    //   //dispatch post
-    // }
+    if (likeStatus === 'liked') {
+      console.log(song.title, 'UNLIKED');
+      setLikeStatus('unliked');
+
+      
+      let res = await dispatch( delOneLike(payload) )
+    } else if (likeStatus === 'unliked') {
+      console.log(song.title, 'LIKED');
+      setLikeStatus('liked');
+      let res = await dispatch( addOneLike(payload) )
+    }
   }
 
   return (
@@ -49,8 +59,8 @@ const Like = ({ song }) => {
       onClick={handleLike}
     >
       <i
-        className={`fas fa-heart fa-2x ${likeStatus}`}
-        style={style}
+        className={`fas fa-heart fa-2x`}
+        style={color}
       />  
     </button>
   )
