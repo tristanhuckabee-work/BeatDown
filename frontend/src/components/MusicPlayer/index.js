@@ -6,17 +6,27 @@ import './musicPlayer.css';
 
 // ------------------------------------------------------------------------- //
 
+const hasSong = (song) => {
+  if ( typeof song === 'object' ) {
+    return (
+      <div id='player-info'>
+        <Like song={song} />
+        <p>{song.title}</p>
+      </div>
+    )
+  } else {
+    return ( <p>NO TRACK SELECTED</p> );
+  }
+}
+
 const MusicPlayer = ({ song }) => {
+  let playerInfo = hasSong(song);
+
   return (
     <div className='testAudio'>
       <AudioPlayer
         autoPlay
-        customAdditionalControls={[
-          <div id='player-info'>
-            <Like song={song} />
-            <p>{song.title}</p>
-          </div>
-        ]}
+        customAdditionalControls={[ playerInfo ]}
         showFilledVolume={true}
         layout='stacked-reverse'
         src={song.musicFile}
