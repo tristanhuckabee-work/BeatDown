@@ -6,15 +6,15 @@ import './like.css';
 // ------------------------------------------------------------------------ //
 
 const Like = ({ song }) => {
-  if (song) {
-    return (
-      <>
-        <button className='like-btn'>
-          <i className='fas fa-heart fa-2x' />  
-        </button>
-      </>
-    )
-  }
+  const [likeStatus, setLikeStatus] = useState('liked')
+
+  return (
+    <>
+      <button className='like-btn'>
+        <i className={`fas fa-heart fa-2x ${likeStatus}`} />  
+      </button>
+    </>
+  )
 }
 
 // ------------------------------------------------------------------------ //

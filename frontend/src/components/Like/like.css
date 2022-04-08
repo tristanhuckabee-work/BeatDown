@@ -1,4 +1,9 @@
 .like-btn {
   background-color: transparent;
   border: 1px solid transparent;
+  cursor: pointer;
 }
+.liked         { color: #f00 }
+.liked:hover   { color: #c00 }
+.unliked       { color: #ccc }
+.unliked:hover { color: #999 }
