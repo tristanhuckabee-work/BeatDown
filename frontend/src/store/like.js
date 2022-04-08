@@ -17,8 +17,6 @@ const delLike  = (payload) => {
 export const getAllLikes = (payload) => async dispatch => {
   const res = await csrfFetch('/api/likes');
   const likeArray = await res.json();
-  console.log('LIKEARR: ', likeArray);
-  console.log('PAYLOAD: ', payload)
 
   dispatch( getLikes( likeArray ) );
 }

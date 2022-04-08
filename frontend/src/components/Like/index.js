@@ -6,9 +6,11 @@ import './like.css';
 
 // ------------------------------------------------------------------------ //
 
-const Like = ({ song }) => {
-  const dispatch = useDispatch();
-  const [likeStatus, setLikeStatus] = useState('liked')
+const Like = ({ song, likes }) => {
+  const [likeStatus, setLikeStatus] = useState('unliked')
+  likes.forEach( like => {
+    if ( like.id === song.id ) setLikeStatus('liked')
+  })
 
   return (
     <>

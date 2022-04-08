@@ -14,9 +14,7 @@ router.post( '/add', asyncHandler( async (req, res) => {
 }));
 // READ LIKE
 router.get( '/', asyncHandler( async (req, res) => {
-  console.log('YOU HIT HERE!!!')
   const likes = await db.Like.findAll();
-  console.log('ROUTE LIKES: ', likes)
   return res.json(likes);
 }));
 // DELETE LIKE

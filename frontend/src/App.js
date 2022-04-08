@@ -19,25 +19,22 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [currTrack, setCurrTrack] = useState(1);
   const [editSong, setEditSong] = useState(undefined)
+  const [userId, setUserId] = useState('NOT LOGGED');
   
   useEffect( () => {
     dispatch( sessionActions.restoreUser() )
     .then( () => setIsLoaded(true) );
     dispatch( getAllSongs() );
+    dispatch( getAllLikes(sessionUser?.id) );
+
   }, [dispatch] );
   
   const sessionUser = useSelector( state => state.session.user );
-  useEffect( () => {
-    dispatch( getAllLikes() );
-  }, []);
-
   const songsObj = useSelector( state => state.search.songs );
+  // let songList = {};
+  // songsObj?.forEach( song => songList[song.id] = song);
   const likes = useSelector( state => state.likes );
   console.log('LIKES: ', likes);
-
-
-  let songList = {};
-  songsObj?.forEach( song => songList[song.id] = song);
 
   const handleEdit = (clicked) => {
     setEditSong(clicked);
@@ -53,14 +50,14 @@ function App() {
           <NavLink to={`/search/songs/${song.id}/edit`}>
             <i className='fas fa-pen-to-square fa-2x' onClick={ () => handleEdit(song) }></i>
           </NavLink>
-          <Like song={song} />
+          {/* <Like song={song} likes={likes}/> */}
           <i className='fas fa-message fa-2x'></i>
         </div>
       )
     } else {
       return (
         <div className='userIcons'>
-          <i className='fas fa-heart fa-2x'></i>
+          {/* <Like song={song} likes={likes}/> */}
           <i className='fas fa-message fa-2x'></i>
         </div>
       )
