@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addOneLike, delOneLike } from '../../store/like';
 
 
@@ -7,15 +7,17 @@ import './like.css';
 
 // ------------------------------------------------------------------------ //
 
-const Like = ({ song, likes, user }) => {
+const Like = ({ song }) => {
   const dispatch = useDispatch();
-  const [likeStatus, setLikeStatus] = useState('unliked')
+  const sessionUser = useSelector( state => state.session.user );
+  const likes = useSelector( state => state.likes );
+  const [likeStatus, setLikeStatus] = useState('liked')
   const [likeId, setLikeId] = useState();
   
   useEffect( () => {
     for (let idx = 0; idx < likes.length; idx++ ) {
       let like = likes[idx];
-      if ( like.songId === song.id && like.userId === user) {
+      if ( like.songId === song.id && like.userId === sessionUser.id) {
         setLikeStatus('liked');
         setLikeId(like.id)
         console.log(`${song.title}: `, likeStatus);
