@@ -9,8 +9,8 @@ import Navigation from './components/Navigation';
 import MusicPlayer from './components/MusicPlayer';
 import Footer from './components/Footer';
 import * as sessionActions from './store/session';
-
 import { getAllSongs } from './store/search.js';
+import { getAllLikes } from './store/like.js';
 
 // ------------------------------------------------------------------------- //
 
@@ -24,15 +24,13 @@ function App() {
     dispatch( sessionActions.restoreUser() )
     .then( () => setIsLoaded(true) );
     dispatch( getAllSongs() );
+    dispatch( getAllLikes() );
+
   }, [dispatch] );
-  // useEffect( () => {
-  //   return;
-  // }, [songsObj] )
   
   const sessionUser = useSelector( state => state.session.user );
   const songsObj = useSelector( state => state.search.songs );
-  let songList = {};
-  songsObj?.forEach( song => songList[song.id] = song);
+  const likes = useSelector( state => state.likes );
 
   const handleEdit = (clicked) => {
     setEditSong(clicked);
@@ -41,25 +39,29 @@ function App() {
     setCurrTrack(song);
   }
   const userPriv = (song) => {
-    if ( sessionUser?.id === song.User?.id) {
+    if (sessionUser) {
       return (
         <div className='userIcons'>
-          <DeleteModal song={song}/>
-          <NavLink to={`/search/songs/${song.id}/edit`}>
-            <i className='fas fa-pen-to-square fa-2x' onClick={ () => handleEdit(song) }></i>
-          </NavLink>
-          <i className='fas fa-heart fa-2x'></i>
-          <i className='fas fa-message fa-2x'></i>
-        </div>
-      )
-    } else {
-      return (
-        <div className='userIcons'>
-          <i className='fas fa-heart fa-2x'></i>
-          <i className='fas fa-message fa-2x'></i>
+          { sessionUser.id === song.User.id && (
+              <>
+                <DeleteModal song={song}/>
+                <NavLink to={`/search/songs/${song.id}/edit`}>
+                  <i
+                    className='fas fa-pen-to-square fa-2x'
+                    onClick={ () => handleEdit(song) }
+                  ></i>
+                </NavLink>
+              </>
+            )
+          }
+          <Like song={song} likes={likes} user={sessionUser.id}/>
         </div>
       )
     }
+
+
+
+
   }
 
   return (

@@ -1,5 +1,4 @@
 import AudioPlayer from 'react-h5-audio-player';
-import Like from '../Like';
 
 import 'react-h5-audio-player/lib/styles.css';
 import './musicPlayer.css';
@@ -10,7 +9,6 @@ const hasSong = (song) => {
   if ( typeof song === 'object' ) {
     return (
       <div id='player-info'>
-        <Like song={song} />
         <p>{song.title}</p>
       </div>
     )
