@@ -9,8 +9,8 @@ import Navigation from './components/Navigation';
 import MusicPlayer from './components/MusicPlayer';
 import Footer from './components/Footer';
 import * as sessionActions from './store/session';
-
 import { getAllSongs } from './store/search.js';
+import { getAllLikes } from './store/like.js';
 
 // ------------------------------------------------------------------------- //
 
@@ -25,12 +25,17 @@ function App() {
     .then( () => setIsLoaded(true) );
     dispatch( getAllSongs() );
   }, [dispatch] );
-  // useEffect( () => {
-  //   return;
-  // }, [songsObj] )
   
   const sessionUser = useSelector( state => state.session.user );
+  useEffect( () => {
+    dispatch( getAllLikes() );
+  }, []);
+
   const songsObj = useSelector( state => state.search.songs );
+  const likes = useSelector( state => state.likes );
+  console.log('LIKES: ', likes);
+
+
   let songList = {};
   songsObj?.forEach( song => songList[song.id] = song);
 
@@ -48,7 +53,7 @@ function App() {
           <NavLink to={`/search/songs/${song.id}/edit`}>
             <i className='fas fa-pen-to-square fa-2x' onClick={ () => handleEdit(song) }></i>
           </NavLink>
-          <i className='fas fa-heart fa-2x'></i>
+          <Like song={song} />
           <i className='fas fa-message fa-2x'></i>
         </div>
       )

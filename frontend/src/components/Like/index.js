@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 import './like.css';
 
 // ------------------------------------------------------------------------ //
 
 const Like = ({ song }) => {
+  const dispatch = useDispatch();
   const [likeStatus, setLikeStatus] = useState('liked')
 
   return (
