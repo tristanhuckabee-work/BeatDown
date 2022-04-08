@@ -5,7 +5,7 @@ const GET    = '/likes'
 const LIKE   = '/likes/add'
 const UNLIKE = '/likes/del'
 
-const initialState = {};
+const initialState = [];
 
 const getLikes = (payload) => {
   return { type: GET, payload } };
@@ -21,7 +21,7 @@ export const getAllLikes = (payload) => async dispatch => {
   dispatch( getLikes( likeArray ) );
 }
 export const addOneLike = (payload) => async dispatch => {
-  const res = await csrfFetch('/api/likes/new', {
+  const res = await csrfFetch('/api/likes/add', {
     method: 'POST',
     body: JSON.stringify(payload)
   });
@@ -41,20 +41,20 @@ const LikeReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case GET:
-      newState = { ...state };
+      newState = [ ...state ];
       newState = action.payload;
 
       return newState;
     case LIKE:
-      newState = { ...state };
+      newState = [ ...state ];
       newState.concat( action.payload );
 
       return newState;
     case UNLIKE:
-      newState = { ...state }
-      // newState = newState.filter( like => {
-      //   if ( like.id !== action.payload ) return like;
-      // });
+      newState = [ ...state ]
+      newState = newState.filter( like => {
+        if ( like.id !== action.payload ) return like;
+      });
 
       return newState;
     default:
