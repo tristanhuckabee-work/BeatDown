@@ -46,14 +46,14 @@ function App() {
           <NavLink to={`/search/songs/${song.id}/edit`}>
             <i className='fas fa-pen-to-square fa-2x' onClick={ () => handleEdit(song) }></i>
           </NavLink>
-          <Like song={song} likes={likes}/>
+          <Like song={song} likes={likes} user={sessionUser.id}/>
           <i className='fas fa-message fa-2x'></i>
         </div>
       )
     } else {
       return (
         <div className='userIcons'>
-          <Like song={song} likes={likes}/>
+          <Like song={song} likes={likes} user={sessionUser.id}/>
           <i className='fas fa-message fa-2x'></i>
         </div>
       )
