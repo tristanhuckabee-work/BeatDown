@@ -61,11 +61,11 @@ const CreateSongPage = () => {
             { errors.map( (err, idx) => <li key={idx}>{err}</li>)}
           </ul>
         )}
-        <input required placeholder='Title' type='text'
+        <input placeholder='Title' type='text'
           value={title} onChange={ e => setTitle(e.target.value)} />
-        <input required placeholder='Music URL' type='text'
+        <input placeholder='Music URL' type='text'
           value={musicUrl} onChange={ e => setMusicUrl(e.target.value)} />
-        <input required placeholder='Image URL' type='text'
+        <input placeholder='Image URL' type='text'
         value={imageUrl} onChange={ e => setImageUrl(e.target.value)} />
         <button type='submit' id='create-subm'>UPLOAD SONG</button>
       </form>
