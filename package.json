@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/tristanhuckabee-work/BeatDown/issues"
   },
-  "homepage": "https://github.com/tristanhuckabee-work/BeatDown#readme"
+  "homepage": "https://github.com/tristanhuckabee-work/BeatDown#readme",
+  "dependencies": {
+    "react-h5-audio-player": "^3.8.3"
+  }
 }

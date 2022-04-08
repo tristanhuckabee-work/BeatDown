@@ -4,6 +4,7 @@ import { Route, Switch, NavLink } from 'react-router-dom';
 import CreateSongPage from './components/CreateSongPage';
 import EditSongPage from './components/EditSongPage';
 import DeleteModal from './components/DeleteSongPage/deleteModal';
+import Like from './components/Like';
 import Navigation from './components/Navigation';
 import MusicPlayer from './components/MusicPlayer';
 import Footer from './components/Footer';
