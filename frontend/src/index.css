@@ -77,8 +77,8 @@ main {
   margin: 55px 0 0 0;
   width: 100%;
   height: 400px;
-  background-color: blue;
   background-image: url('https://res.cloudinary.com/dzsgront4/image/upload/v1649654388/pexels-bryan-catota-3756766_tk3z6n.jpg');
+  background-color: #252525;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
