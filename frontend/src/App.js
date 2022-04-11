@@ -58,10 +58,51 @@ function App() {
         </div>
       )
     }
+  }
 
-
-
-
+  const chooseMain = () => {
+    if (sessionUser) {
+      return (
+        <div className='songList'>
+        <h2>TRACKS</h2>
+        {songsObj.map( song => {
+          return (
+            <div className='songItem' key={song.id} onClick={ () => handleSongClick(song) }>
+              <div className='songpage'>
+                <img src={song.waveFile} alt="Album Cover" />
+                <h2>{song.title}</h2>  
+              </div>
+              <div className='userInfo'>
+                <p>{song.User?.username}</p>
+                { userPriv(song) }
+              </div>
+            </div>
+          )
+        })}
+        </div>
+      )
+    } else {
+      return (
+        <main>
+          <div className='splash'>
+            <h1>Upload, Listen, Get Down</h1>
+          </div>
+          <h2>Check These Beats Out!</h2>
+          <div className='preview'>
+            { songsObj.map( (song, idx) => {
+                if (idx < 5) {
+                  return (
+                    <div className='songSquare' key={song.id} onClick={ () => handleSongClick(song) } >
+                      <img src={song.waveFile} alt="Album Cover" />
+                    </div>
+                  )
+                }
+              })
+           }
+          </div>
+        </main>
+      )
+    }
   }
 
   return (
@@ -71,7 +112,8 @@ function App() {
       {isLoaded && (
       <Switch>
         <Route exact path='/'>
-          <div className='songList'>
+          { chooseMain() }
+          {/* <div className='songList'>
             <h2>TRACKS</h2>
             {songsObj.map( song => {
               return (
@@ -87,7 +129,7 @@ function App() {
                 </div>
               )
             })}
-          </div>
+          </div> */}
         </Route>
         <Route path='/search/songs/new'>
           <CreateSongPage />
