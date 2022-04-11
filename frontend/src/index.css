@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 body {
   margin: 0;
+  padding-bottom: 20px;
   font-family: 'Raleway', sans-serif;
+  overflow-x: hidden;
 }
 .songList{
   width:100%;

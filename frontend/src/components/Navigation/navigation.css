@@ -53,12 +53,13 @@ header a:hover {
 }
 .profile-dropdown {
   position: absolute;
+  top: 100%;
   max-width: 150px;
   text-align: center;
   padding: 10px;
   list-style: none;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  /* box-shadow: 4px 0 4px 0 #888888; */
   color: #252525;
   background-color: #ffffff;
 }

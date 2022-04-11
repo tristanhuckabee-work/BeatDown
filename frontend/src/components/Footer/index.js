@@ -7,7 +7,7 @@ import './footer.css'
 const Footer = () => {
   return (
     <footer>
-      <p>&copy; Tristan Huckabee 2020</p>
+      <p>&copy; Tristan Huckabee 2022</p>
       <div>
         <a href='https://github.com/tristanhuckabee-work/BeatDown' target='_blank'>
           <i className='fab fa-github-square fa-2x'></i>
