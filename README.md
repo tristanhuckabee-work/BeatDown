@@ -1,5 +1,5 @@
 # BeatDown
-This is a website where you can upoload and listen to music, based on [SoundCloud](https://soundcloud.com/discover), view the [Live Link](https://beat-down.herokuapp.com/).
+This is a website where you can upload and listen to music, based on [SoundCloud](https://soundcloud.com/discover), view the [Live Link](https://beat-down.herokuapp.com/).
 ![forReadme](https://user-images.githubusercontent.com/87467157/162663676-84fe7da7-346f-429d-a7db-c54b5df540a8.png)
 
 
