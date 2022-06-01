@@ -6,9 +6,19 @@ This is a website where you can upload and listen to music, based on [SoundCloud
 ## Index
 - [MVP Feature List](https://github.com/tristanhuckabee-work/BeatDown/wiki/feature-list)
 - [Database Schema](https://github.com/tristanhuckabee-work/BeatDown/wiki/database-schema)
-- 
 ## Technologies Used
-HTML, CSS, Javascript, React, Redux, Express, PostgreSQL, VS Code, [Vectr](https://vectr.com/), and Github
+
+  <p>
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/>
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/>
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/>
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/>
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40"/>
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/>
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg" alt="postgresql" width="40" height="40"/>
+    <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/>
+    <img src="https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg" alt="heroku" width="40" height="40"/>
+  </p>
 
 ## How to Use
 Either visit the [Live Link](https://beat-down.herokuapp.com/) or follow the directions below...
