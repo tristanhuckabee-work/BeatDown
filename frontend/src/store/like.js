@@ -25,8 +25,8 @@ export const addOneLike = (payload) => async dispatch => {
     method: 'POST',
     body: JSON.stringify(payload)
   });
-  await res.json();
-  dispatch( addLike(payload) )
+  const data = await res.json();
+  dispatch( addLike(data) )
 }
 export const delOneLike = (id) => async dispatch => {
   const res = await csrfFetch('/api/likes/del', {
@@ -47,13 +47,13 @@ const LikeReducer = (state = initialState, action) => {
       return newState;
     case LIKE:
       newState = [ ...state ];
-      newState.concat( action.payload );
+      newState.push( action.payload );
 
       return newState;
     case UNLIKE:
       newState = [ ...state ]
-      newState = newState.filter( like => {
-        if ( like.id !== action.payload ) return like;
+      newState.forEach((like, i) => {
+        if (like.id === action.payload.id) newState.splice(i, 1);
       });
 
       return newState;
