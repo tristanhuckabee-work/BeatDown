@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addOneLike, delOneLike } from '../../store/like';
-
-
 import './like.css';
 
 // ------------------------------------------------------------------------ //
@@ -11,12 +9,12 @@ const Like = ({ song }) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector( state => state.session.user );
   const likes = useSelector( state => state.likes );
-  const [likeStatus, setLikeStatus] = useState('unliked')
-  const [likeId, setLikeId] = useState();
+  const [likeStatus, setLikeStatus] = useState(false)
+
   let color;
-  if (likeStatus === 'liked') {
+  if (likeStatus === true) {
     color = {'color':'#f00'}
-  } else if (likeStatus === 'unliked') {
+  } else {
     color = {'color':'#ccc'}
   }
   
@@ -27,10 +25,13 @@ const Like = ({ song }) => {
       if ( like.userId === sessionUser.id ) likedSongs.push([like.id, like.songId, like.userId])
     };
     likedSongs.forEach( like => {
-      if ( like[1] === song.id) setLikeStatus('liked')
+      if ( like[1] === song.id) setLikeStatus(true)
     })
-    // console.log(song.title, likeStatus);
   }, [song.id, song.title, sessionUser.id, likeStatus, likes] );
+
+  useEffect(() => {
+    return;
+  }, [likes])
   
   const handleLike = async (e) => {
     e.stopPropagation()
@@ -40,14 +41,12 @@ const Like = ({ song }) => {
       songId: song.id
     }
 
-    if (likeStatus === 'liked') {
-      color = {'color':'#f00'};
-      setLikeStatus('unliked');
-      let res = await dispatch( delOneLike(payload) )
-    } else if (likeStatus === 'unliked') {
-      color = {'color':'#ccc'};
-      setLikeStatus('liked');
-      let res = await dispatch( addOneLike(payload) )
+    if (likeStatus === true) {
+      setLikeStatus(false);
+      await dispatch( delOneLike(payload) )
+    } else {
+      setLikeStatus(true);
+      await dispatch( addOneLike(payload) )
     }
   }
 

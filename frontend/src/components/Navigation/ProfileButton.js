@@ -39,7 +39,7 @@ const ProfileButton = ({ user }) => {
           <li>{user.email}</li>
           <hr />
           <li className='signOut'>
-            <i class='fas fa-right-from-bracket fa-2x' onClick={logout} />
+            <i className='fas fa-right-from-bracket fa-2x' onClick={logout} />
           </li>
         </ul>
       )}

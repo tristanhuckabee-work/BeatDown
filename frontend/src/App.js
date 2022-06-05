@@ -95,6 +95,8 @@ function App() {
                       <img src={song.waveFile} alt="Album Cover" />
                     </div>
                   )
+                } else {
+                  return null;
                 }
               })
            }
@@ -112,23 +114,6 @@ function App() {
       <Switch>
         <Route exact path='/'>
           { chooseMain() }
-          {/* <div className='songList'>
-            <h2>TRACKS</h2>
-            {songsObj.map( song => {
-              return (
-                <div className='songItem' key={song.id} onClick={ () => handleSongClick(song) }>
-                  <div className='songpage'>
-                    <img src={song.waveFile} alt="Album Cover" />
-                    <h2>{song.title}</h2>  
-                  </div>
-                  <div className='userInfo'>
-                    <p>{song.User?.username}</p>
-                    { userPriv(song) }
-                  </div>
-                </div>
-              )
-            })}
-          </div> */}
         </Route>
         <Route path='/search/songs/new'>
           <CreateSongPage />
