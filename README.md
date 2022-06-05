@@ -41,3 +41,8 @@ Anyone can view and listen to a track.
 Logged in Users may...
 - Add, Edit, Delete Songs
 - Like and Unlike Songs
+
+## Problems, Solutions, and Outcomes
+### Problem: If a song is 'liked' on-load then you can not 'unlike'...
+- Solution: I rewrote the reducer in the like-store for adding and deleting likes.
+- Outcome: Though you can like and unlike at will, it requires 2 clicks to unlike.
