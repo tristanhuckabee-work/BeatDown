@@ -41,10 +41,11 @@ const Like = ({ song }) => {
     }
 
     if (likeStatus === 'liked') {
+      color = {'color':'#f00'};
       setLikeStatus('unliked');
       let res = await dispatch( delOneLike(payload) )
     } else if (likeStatus === 'unliked') {
-      color = {'color':'#ccc'}
+      color = {'color':'#ccc'};
       setLikeStatus('liked');
       let res = await dispatch( addOneLike(payload) )
     }

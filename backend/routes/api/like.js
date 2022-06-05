@@ -21,13 +21,14 @@ router.get( '/', asyncHandler( async (req, res) => {
 }));
 // DELETE LIKE
 router.delete( '/del', asyncHandler( async (req, res) => {
-  console.log('INSIDE DELETE API: ', req.body)
   const {userId, songId} = req.body
   const like = await db.Like.findOne({
     where: { userId, songId }
   });
+  
+  if (!like) return res.json('Like does not exist');
   like.destroy();
-  return res.json(req.body);
+  return res.json(like);
 }));
 
 // ------------------------------------------------------------------------- //

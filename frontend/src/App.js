@@ -25,7 +25,6 @@ function App() {
     .then( () => setIsLoaded(true) );
     dispatch( getAllSongs() );
     dispatch( getAllLikes() );
-
   }, [dispatch] );
   
   const sessionUser = useSelector( state => state.session.user );
