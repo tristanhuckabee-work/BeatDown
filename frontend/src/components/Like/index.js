@@ -31,10 +31,10 @@ const Like = ({ song }) => {
 
   useEffect(() => {
     return;
-  }, [likes])
+  }, [likes, likeStatus])
   
   const handleLike = async (e) => {
-    e.stopPropagation()
+    e.stopPropagation();
     
     let payload = {
       userId: sessionUser.id,
@@ -42,12 +42,11 @@ const Like = ({ song }) => {
     }
 
     if (likeStatus === true) {
-      setLikeStatus(false);
-      await dispatch( delOneLike(payload) )
+      await dispatch(delOneLike(payload))
     } else {
-      setLikeStatus(true);
-      await dispatch( addOneLike(payload) )
+      await dispatch(addOneLike(payload))
     }
+    setLikeStatus(!likeStatus);
   }
 
   return (
