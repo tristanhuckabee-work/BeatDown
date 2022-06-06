@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Switch, NavLink } from 'react-router-dom';
+import { Route, Switch, NavLink, useHistory } from 'react-router-dom';
 import CreateSongPage from './components/CreateSongPage';
 import EditSongPage from './components/EditSongPage';
 import DeleteModal from './components/DeleteSongPage/deleteModal';
@@ -11,11 +11,13 @@ import Footer from './components/Footer';
 import * as sessionActions from './store/session';
 import { getAllSongs } from './store/search.js';
 import { getAllLikes } from './store/like.js';
+import UserPage from './components/UserPage';
 
 // ------------------------------------------------------------------------- //
 
 function App() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [isLoaded, setIsLoaded] = useState(false);
   const [currTrack, setCurrTrack] = useState(1);
   const [editSong, setEditSong] = useState(undefined)
@@ -36,6 +38,12 @@ function App() {
   }
   const handleSongClick = (song) => {
     setCurrTrack(song);
+  }
+  const handlePClick = (user) => {
+    history.push({
+      pathname: `/u/${user.username}`,
+      state: user
+    })
   }
   const userPriv = (song) => {
     if (sessionUser) {
@@ -72,7 +80,7 @@ function App() {
                 <h2>{song.title}</h2>  
               </div>
               <div className='userInfo'>
-                <p>{song.User?.username}</p>
+                <p onClick={() => handlePClick(song.User)}>{song.User?.username}</p>
                 { userPriv(song) }
               </div>
             </div>
@@ -99,7 +107,7 @@ function App() {
                   return null;
                 }
               })
-           }
+            }
           </div>
         </main>
       )
@@ -120,6 +128,9 @@ function App() {
         </Route>
         <Route path='/search/songs/:id/edit'>
           <EditSongPage song={editSong} />
+        </Route>
+        <Route path='/u/:username'>
+          <UserPage />
         </Route>
       </Switch>
       )}
