@@ -1,23 +1,26 @@
 import { csrfFetch } from './csrf';
-
 // ------------------------------------------------------------------------- //
+const SONGS = '/SONGS';
+const CREATE = '/NEW_SONG';
+const EDIT = '/EDIT_SONG';
+const DELETE = '/DELETE_SONG';
+const SETCURR= '/SET_CURRENT_SONG';
+const SETEDIT= '/SET_EDITED_SONG';
 
-const SONGS = '/search/songs';
-const CREATE = '/search/songs/new';
-const EDIT = '/search/songs/:id/edit';
-const DELETE = '/search/songs/:id/delete';
-
-const initialState = { songs: [] };
-
-
-const songs = (payload) => {
+const songs   = (payload) => {
   return { type: SONGS, payload }};
 const newSong = (payload) => {
   return { type: CREATE, payload }};
-const edSong = (payload) => {
+const edSong  = (payload) => {
   return { type: EDIT, payload }};
 const delSong = (payload) => {
   return { type: DELETE, payload }};
+const setCurr = (payload) => {
+  return { type: SETCURR, payload}};
+const setEdit = (payload) => {
+  return { type: SETEDIT, payload}};
+
+// ------------------------------------------------------------------------- //
 
 export const getAllSongs = () => async dispatch => {
   const res = await csrfFetch('/api/search/songs');
@@ -59,6 +62,10 @@ export const deleteSong = (incoming) => async dispatch => {
   dispatch( delSong(data) )
   return data;
 }
+export const setCurrentSong = (song) => async dispatch => dispatch( setCurr(song) );
+export const setEditSong =    (song) => async dispatch => dispatch( setEdit(song) );
+
+const initialState = { songs: [], currentSong: {}, editSong: {} };
 
 const SongReducer = (state = initialState, action) => {
   let newState;
@@ -82,15 +89,27 @@ const SongReducer = (state = initialState, action) => {
         }
       })
 
-
       return newState;
     case DELETE:
       newState = { ...state };
 
       newState.songs = newState.songs.filter( song => {
-        if ( song.id !== action.payload ) return song;
+        if ( song.id !== action.payload ) {
+          return true;
+        } else {
+          return false;
+        }
       })
 
+      return newState;
+    case SETCURR:
+      newState = { ...state };
+      newState.currentSong = action.payload;
+
+      return newState;
+    case SETEDIT:
+      newState = {...state};
+      newState.editSong = action.payload;
       return newState;
     default:
       return state;

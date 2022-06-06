@@ -1,6 +1,6 @@
 .user-page-container {
   align-items: flex-start;
-  background-color: red;
+  /* background-color: red; */
   display: flex;
   gap: 10px;
   justify-content: space-between;
@@ -8,9 +8,13 @@
   width: 58.5vw;
 }
 .user-page-songs {
-  background-color: blue;
+  /* background-color: blue; */
   height: 100%;
   width: calc(75%);
+}
+.user-page-songs .songItem {
+  justify-content: space-between;
+  width: calc(100% - 20px);
 }
 .user-page-info  {
   background-color: green;

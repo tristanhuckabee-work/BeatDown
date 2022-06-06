@@ -7,11 +7,12 @@ import DeleteModal from './components/DeleteSongPage/deleteModal';
 import Like from './components/Like';
 import Navigation from './components/Navigation';
 import MusicPlayer from './components/MusicPlayer';
-import Footer from './components/Footer';
-import * as sessionActions from './store/session';
-import { getAllSongs } from './store/search.js';
-import { getAllLikes } from './store/like.js';
 import UserPage from './components/UserPage';
+import Footer from './components/Footer';
+
+import * as sessionActions from './store/session';
+import { getAllSongs, setCurrentSong, setEditSong } from './store/search.js';
+import { getAllLikes } from './store/like.js';
 
 // ------------------------------------------------------------------------- //
 
@@ -19,8 +20,6 @@ function App() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [isLoaded, setIsLoaded] = useState(false);
-  const [currTrack, setCurrTrack] = useState(1);
-  const [editSong, setEditSong] = useState(undefined)
   
   useEffect( () => {
     dispatch( sessionActions.restoreUser() )
@@ -31,15 +30,15 @@ function App() {
   
   const sessionUser = useSelector( state => state.session.user );
   const songsObj = useSelector( state => state.search.songs );
+  const currSong = useSelector( state => state.search.currentSong);
+  const editSong = useSelector( state => state.search.editSong);
   const likes = useSelector( state => state.likes );
 
-  const handleEdit = (clicked) => {
-    setEditSong(clicked);
-  }
-  const handleSongClick = (song) => {
-    setCurrTrack(song);
-  }
-  const handlePClick = (user) => {
+  const handleEdit =      async (song) => await dispatch(setEditSong(song));
+  const handleSongClick = async (song) => await dispatch(setCurrentSong(song));
+  const handlePClick = (e, user) => {
+    e.stopPropagation();
+
     history.push({
       pathname: `/u/${user.username}`,
       state: user
@@ -66,7 +65,6 @@ function App() {
       )
     }
   }
-
   const chooseMain = () => {
     if (sessionUser) {
       return (
@@ -80,7 +78,7 @@ function App() {
                 <h2>{song.title}</h2>  
               </div>
               <div className='userInfo'>
-                <p onClick={() => handlePClick(song.User)}>{song.User?.username}</p>
+                <p onClick={(e) => handlePClick(e, song.User)}>{song.User?.username}</p>
                 { userPriv(song) }
               </div>
             </div>
@@ -117,7 +115,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      <MusicPlayer song={currTrack} />
+      <MusicPlayer song={currSong} />
       {isLoaded && (
       <Switch>
         <Route exact path='/'>
