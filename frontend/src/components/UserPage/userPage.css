@@ -8,7 +8,6 @@
   width: 58.5vw;
 }
 .user-page-songs {
-  /* background-color: blue; */
   height: 100%;
   width: calc(75%);
 }
@@ -17,6 +16,33 @@
   width: calc(100% - 20px);
 }
 .user-page-info  {
-  background-color: green;
+  align-items: flex-start;
+  /* background-color: #eee; */
+  border-radius: 10px 35px 10px 10px;
+  box-sizing: border-box;
+  color: #252525;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 5px;
   width: calc(25%);
+}
+span.user-name-pic {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.social { color: #ff000099 }
+span.user-span {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+}
+.user-page-pic {
+  background-color: red;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
 }

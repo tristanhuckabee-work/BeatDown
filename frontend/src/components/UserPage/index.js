@@ -61,13 +61,25 @@ const UserPage = () => {
         })}
       </div>
       <div className='user-page-info'>
-        <p>{pageUser.id}</p>
-        <p>{pageUser.username}</p>
-        <p>{pageUser.profilePic || `nah`}</p>
-        <p>{pageUser.biography || `nah`}</p>
-        <p>{pageUser.instagram || `nah`}</p>
-        <p>{pageUser.twitter || `nah`}</p>
-        <p>{pageUser.facebook || `nah`}</p>
+        <span className='user-name-pic'>
+          <p>@{pageUser.username}</p>
+          <div className='user-page-pic'
+            style={{backgroundImage: `url(${pageUser.profilePic})`}}
+          ></div>
+        </span>
+        <span className='user-span social'>
+          <i className='fab fa-instagram' />
+          <p>{pageUser.instagram || `No Swag?`}</p>
+        </span>
+        <span className='user-span social'>
+          <i className='fab fa-twitter' />
+          <p>{pageUser.twitter || `No Takes?`}</p>
+        </span>
+        <span className='user-span social'>
+          <i className='fab fa-facebook-square' />
+          <p>{pageUser.facebook || `That's Fair.`}</p>
+        </span>
+        <p>BIO: {pageUser.biography || `No Word Good?`}</p>
       </div>
     </div>
   )

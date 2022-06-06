@@ -92,14 +92,8 @@ const SongReducer = (state = initialState, action) => {
       return newState;
     case DELETE:
       newState = { ...state };
-
-      newState.songs = newState.songs.filter( song => {
-        if ( song.id !== action.payload ) {
-          return true;
-        } else {
-          return false;
-        }
-      })
+      newState.songs = newState.songs
+        .filter( song => song.id !== action.payload ? true : false );
 
       return newState;
     case SETCURR:
