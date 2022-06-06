@@ -56,6 +56,10 @@ body {
 .userInfo p {
   align-self: flex-end;
 }
+.userInfo a {
+  text-decoration: none;
+  color: inherit;
+}
 .userInfo p:hover {
   color: #ff0000;
 }
