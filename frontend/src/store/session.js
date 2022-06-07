@@ -4,6 +4,7 @@ import { csrfFetch } from './csrf';
 
 const SET_USER = 'session/setUser';
 const REMOVE_USER ='session/removeUser';
+const UPDATE = 'session/editUser';
 const initialState = { user: null };
 
 const setUser = (user) => {
@@ -12,6 +13,8 @@ const setUser = (user) => {
 const removeUser = () => {
   return { type: REMOVE_USER };
 };
+const editUser = (payload) => {
+  return {type: UPDATE, payload}}
 
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
@@ -50,6 +53,16 @@ export const logout = () => async (dispatch) => {
   dispatch(removeUser());
   return response;
 };
+export const updateUser = (user) => async (dispatch) => {
+  console.log('INSIDE THUNK', user);
+  const res = await csrfFetch(`/api/users/:id/edit`, {
+    method: 'PATCH',
+    body: JSON.stringify(user)
+  });
+  const data = await res.json();
+
+  dispatch(editUser(data));
+}
 
 const sessionReducer = (state = initialState, action) => {
   let newState;
@@ -62,6 +75,8 @@ const sessionReducer = (state = initialState, action) => {
       newState = Object.assign({}, state);
       newState.user = null;
       return newState;
+    case UPDATE:
+      return newState = { user: action.payload}
     default:
       return state;
   }

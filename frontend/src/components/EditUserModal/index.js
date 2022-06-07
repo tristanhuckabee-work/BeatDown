@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Popup from 'reactjs-popup'
+import { updateUser } from '../../store/session';
 import './editUserModal.css';
 // ------------------------------------------------------------------------- //
 const EditUser = ({ user }) => {
@@ -10,14 +11,33 @@ const EditUser = ({ user }) => {
   const [isHovered, setHovered] = useState(false);
   const [open, setOpen] = useState(false);
   const [errors, setErrors] = useState([]);
-  const [profilePic, setProfilePic] = useState('');
-  const [instagram, setInstagram] = useState('');
-  const [twitter, setTwitter] = useState('');
-  const [facebook, setFacebook] = useState('');
+  const [profilePic, setProfilePic] = useState(user.profilePic);
+  const [instagram, setInstagram] = useState(user.instagram);
+  const [twitter, setTwitter] = useState(user.twitter);
+  const [facebook, setFacebook] = useState(user.facebook);
+  const [biography, setBio] = useState(user.biography)
 
-  const editUser = (e) => {
+  const editUser = async (e) => {
     e.preventDefault();
     e.stopPropagation();
+    
+    console.log('in dispatch', sessionUser);
+    sessionUser.profilePic = profilePic;
+    sessionUser.instagram  = instagram;
+    sessionUser.twitter    = twitter;
+    sessionUser.facebook   = facebook;
+    sessionUser.biography  = biography;
+
+    // const updatedUser = {
+    //   id: user.id,
+    //   profilePic,
+    //   instagram,
+    //   twitter,
+    //   facebook,
+    //   biography
+    // }
+    console.log('in dispatch', sessionUser);
+    await dispatch( updateUser(sessionUser) );
 
     setOpen(false);
   }
