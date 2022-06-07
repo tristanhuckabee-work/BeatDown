@@ -12,6 +12,7 @@ const UserPage = () => {
   const location = useLocation();
   const pageUser = location.state;
   const sessionUser = useSelector(state => state.session.user);
+  const pageUserPic = pageUser.id === sessionUser.id ? sessionUser.instagram : pageUser.instagram
   const songs = useSelector(state => state.search.songs).filter(song => song.artistId === pageUser.id ? true : false);
 
   useEffect(() => {
@@ -68,7 +69,7 @@ const UserPage = () => {
         <span className='user-name-pic'>
           <p>@{pageUser.username}</p>
           <div className='user-page-pic'
-            style={{ backgroundImage: `url(${pageUser.id === sessionUser.id ? sessionUser.instagram : pageUser.instagram})` }}
+            style={{ backgroundImage: `url(${pageUserPic})` }}
           ></div>
         </span>
         <span className='user-span social'>
