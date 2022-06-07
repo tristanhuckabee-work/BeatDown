@@ -19,6 +19,18 @@ header a {
 header a:hover {
   color: #ff0000;
 }
+.nav-home {
+  background-image: url(https://res.cloudinary.com/dzsgront4/image/upload/v1654559547/Untitled_2_lkquux.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 175px;
+  height: 30px;
+  /* transition: all 0.3s linear; */
+}
+.nav-home:hover {
+  background-image: url(https://res.cloudinary.com/dzsgront4/image/upload/v1654559937/Untitled_3_uk1h79.svg);
+}
 .login-signup {
   display: flex;
   align-items: center;

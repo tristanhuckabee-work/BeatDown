@@ -1,0 +1,59 @@
+.edit-user {
+  align-items: center;
+  background-color: #eeeeee;
+  border-radius: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+  padding: 10px;
+}
+.errors {
+  grid-area: error;
+  align-self: center;
+  height: 100%;
+  padding: 5px;
+  list-style: none;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #ff0000;
+  width: 100%;
+  text-align: center;
+}
+.edit-user input {
+  font-size: 1.25em;
+  border: 1px solid #454545;
+  border-radius: 2px;
+  background-color: #ffffff;
+  color: #000000;
+}
+.edit-user-subm {
+  grid-area: subm;
+  width: 100%;
+
+  margin-top: 10px;
+  border: 2px solid #ff0000;
+  background-color: #ff0000;
+  border-radius: 2px;
+  font-weight: bold;
+  font-size: 1.25em;
+  padding: 5px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color .2s linear;
+}
+.edit-user-subm:hover {
+  border: 2px solid #cc0000;
+  background-color: #cc0000;
+}
+.profile-preview {
+  background-color: red;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  height: 250px;
+  margin: 5px 0;
+  width: 250px;
+}

@@ -1,38 +1,35 @@
 import { useState } from 'react';
-import { Redirect, useHistory, useLocation, NavLink } from 'react-router-dom';
+import { useLocation, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import DeleteModal from '../DeleteSongPage/deleteModal';
 import { setCurrentSong } from '../../store/search';
+import Popup from 'reactjs-popup'
+import DeleteModal from '../DeleteSongPage/deleteModal';
+import EditUser from '../EditUserModal';
 import './userPage.css';
-
 // ------------------------------------------------------------------------- //
-
 const UserPage = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const location = useLocation();
   const pageUser = location.state;
   const sessionUser = useSelector(state => state.session.user);
-  const songs = useSelector(state => state.search.songs).filter(song => {
-    if (song.artistId === pageUser.id) return true;
-  })
-  const currSong = useSelector( state => state.search.currentSong)
+  const songs = useSelector(state => state.search.songs).filter(song => song.artistId === pageUser.id ? true : false);
+  // const currSong = useSelector( state => state.search.currentSong)
 
   const userPriv = (song) => {
     if (sessionUser) {
       return (
         <div className='userIcons'>
-          { sessionUser.id === song.User.id && (
-              <>
-                <DeleteModal song={song}/>
-                <NavLink to={`/search/songs/${song.id}/edit`}>
-                  <i
-                    className='fas fa-pen-to-square fa-2x'
-                    // onClick={ () => handleEdit(song) }
-                  ></i>
-                </NavLink>
-              </>
-            )
+          {sessionUser.id === song.User.id && (
+            <>
+              <DeleteModal song={song} />
+              <NavLink to={`/search/songs/${song.id}/edit`}>
+                <i
+                  className='fas fa-pen-to-square fa-2x'
+                // onClick={ () => handleEdit(song) }
+                ></i>
+              </NavLink>
+            </>
+          )
           }
           {/* <Like song={song} likes={likes} user={sessionUser.id}/> */}
         </div>
@@ -40,7 +37,7 @@ const UserPage = () => {
     }
   }
   const handleSongClick = async (song) => {
-    await dispatch( setCurrentSong(song) )
+    await dispatch(setCurrentSong(song))
   }
 
   return (
@@ -61,10 +58,15 @@ const UserPage = () => {
         })}
       </div>
       <div className='user-page-info'>
+        <div className='edit-user-info-top'>
+          {sessionUser.id === pageUser.id && (
+            <EditUser user={sessionUser} />
+          )}
+        </div>
         <span className='user-name-pic'>
           <p>@{pageUser.username}</p>
           <div className='user-page-pic'
-            style={{backgroundImage: `url(${pageUser.profilePic})`}}
+            style={{ backgroundImage: `url(${pageUser.profilePic})` }}
           ></div>
         </span>
         <span className='user-span social'>
@@ -80,11 +82,10 @@ const UserPage = () => {
           <p>{pageUser.facebook || `That's Fair.`}</p>
         </span>
         <p>BIO: {pageUser.biography || `No Word Good?`}</p>
+        <div className='edit-user-info'></div>
       </div>
     </div>
   )
 };
-
 // ------------------------------------------------------------------------- //
-
 export default UserPage;

@@ -17,14 +17,13 @@
 }
 .user-page-info  {
   align-items: flex-start;
-  /* background-color: #eee; */
   border-radius: 10px 35px 10px 10px;
   box-sizing: border-box;
   color: #252525;
   display: flex;
   flex-direction: column;
   gap: 0;
-  padding: 5px;
+  /* padding: 5px; */
   width: calc(25%);
 }
 span.user-name-pic {
@@ -45,4 +44,27 @@ span.user-span {
   border-radius: 50%;
   height: 50px;
   width: 50px;
+}
+.edit-user-info-top {
+  align-items: center;
+  background-color: #25252555;
+  border-radius: 10px 10px 0 0;
+  box-sizing: border-box;
+  color: #eee;
+  display: flex;
+  gap: 15px;
+  min-height: 50px;
+  justify-content: flex-end;
+  margin-bottom: 5px;
+  padding: 10px;
+  width: 100%;
+}
+.edit-user-info-top i {
+  cursor: pointer;
+}
+.edit-user-info {
+  background-color: #25252555;
+  border-radius: 0 0 10px 10px;
+  height: 30px;
+  width: 100%;
 }

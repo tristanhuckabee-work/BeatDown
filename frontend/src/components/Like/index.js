@@ -12,7 +12,7 @@ const Like = ({ song }) => {
   const [likeStatus, setLikeStatus] = useState(false)
 
   let color;
-  if (likeStatus === true) {
+  if (likeStatus) {
     color = {'color':'#f00'}
   } else {
     color = {'color':'#ccc'}
