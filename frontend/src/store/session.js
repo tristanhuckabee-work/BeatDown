@@ -54,7 +54,6 @@ export const logout = () => async (dispatch) => {
   return response;
 };
 export const updateUser = (user) => async (dispatch) => {
-  console.log('INSIDE THUNK', user);
   const res = await csrfFetch(`/api/users/:id/edit`, {
     method: 'PATCH',
     body: JSON.stringify(user)

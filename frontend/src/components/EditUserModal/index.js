@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Popup from 'reactjs-popup'
 import { updateUser } from '../../store/session';
@@ -6,7 +6,6 @@ import './editUserModal.css';
 // ------------------------------------------------------------------------- //
 const EditUser = ({ user }) => {
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user);
 
   const [isHovered, setHovered] = useState(false);
   const [open, setOpen] = useState(false);
@@ -20,24 +19,14 @@ const EditUser = ({ user }) => {
   const editUser = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    
-    console.log('in dispatch', sessionUser);
-    sessionUser.profilePic = profilePic;
-    sessionUser.instagram  = instagram;
-    sessionUser.twitter    = twitter;
-    sessionUser.facebook   = facebook;
-    sessionUser.biography  = biography;
 
-    // const updatedUser = {
-    //   id: user.id,
-    //   profilePic,
-    //   instagram,
-    //   twitter,
-    //   facebook,
-    //   biography
-    // }
-    console.log('in dispatch', sessionUser);
-    await dispatch( updateUser(sessionUser) );
+    user.profilePic = profilePic;
+    user.instagram  = instagram;
+    user.twitter    = twitter;
+    user.facebook   = facebook;
+    user.biography  = biography;
+
+    await dispatch( updateUser(user) );
 
     setOpen(false);
   }
@@ -48,6 +37,7 @@ const EditUser = ({ user }) => {
   const updateInsta = (e) => setInstagram(e.target.value);
   const updateTwitter = (e) => setTwitter(e.target.value);
   const updateFaceBook = (e) => setFacebook(e.target.value);
+  const updateBiography = (e) => setBio(e.target.value);
 
   return (
     <>
@@ -106,6 +96,14 @@ const EditUser = ({ user }) => {
               value={facebook}
               placeholder='Facebook URL'
             ></input>
+          </div>
+          <div className='formGroup'>
+            <textarea
+              name='biograpny'
+              onChange={updateBiography}
+              value={biography}
+              placeholder='Biography'
+            ></textarea>
           </div>
           {(!errors.length && (
             <button className='edit-user-subm' type='submit'>Update User</button>

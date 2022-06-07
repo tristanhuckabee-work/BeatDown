@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentSong } from '../../store/search';
@@ -13,8 +13,10 @@ const UserPage = () => {
   const pageUser = location.state;
   const sessionUser = useSelector(state => state.session.user);
   const songs = useSelector(state => state.search.songs).filter(song => song.artistId === pageUser.id ? true : false);
-  // const currSong = useSelector( state => state.search.currentSong)
 
+  useEffect(() => {
+    return;
+  }, [sessionUser]);
   const userPriv = (song) => {
     if (sessionUser) {
       return (
@@ -71,17 +73,17 @@ const UserPage = () => {
         </span>
         <span className='user-span social'>
           <i className='fab fa-instagram' />
-          <p>{pageUser.instagram || `No Swag?`}</p>
+          <p>{(pageUser.id === sessionUser.id ? sessionUser.instagram : pageUser.instagram) || `No Swag?`}</p>
         </span>
         <span className='user-span social'>
           <i className='fab fa-twitter' />
-          <p>{pageUser.twitter || `No Takes?`}</p>
+          <p>{(pageUser.id === sessionUser.id ? sessionUser.twitter : pageUser.twitter) || `No Takes?`}</p>
         </span>
         <span className='user-span social'>
           <i className='fab fa-facebook-square' />
-          <p>{pageUser.facebook || `That's Fair.`}</p>
+          <p>{(pageUser.id === sessionUser.id ? sessionUser.facebook : pageUser.facebook) || `That's Fair.`}</p>
         </span>
-        <p>BIO: {pageUser.biography || `No Word Good?`}</p>
+        <p>BIO: {(pageUser.id === sessionUser.id ? sessionUser.biography : pageUser.biography) || `No Word Good?`}</p>
         <div className='edit-user-info'></div>
       </div>
     </div>

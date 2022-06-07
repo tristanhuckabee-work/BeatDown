@@ -3,9 +3,9 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { db, User } = require('../../db/models');
+const { User } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation.js');
-// const { db } = require('../../config');
+const { db } = require('../../config');
 
 const router = express.Router();
 
@@ -40,13 +40,16 @@ router.post( '/', validateSignup, asyncHandler( async (req, res) => {
   return res.json({ user });
 }));
 router.patch('/:id/edit', requireAuth, asyncHandler( async (req, res) => {
-  console.log(`\n\nINSIDE ROUTE\n\n`);
-  // let users = db.User.findAll();
-  console.log(db)
-  await req.body.save()
-  console.log(req.body);
+  const { id, biography, profilePic, twitter, instagram, facebook} = req.body;
+  const user = await User.findByPk(id);
+  user.profilePic = profilePic;
+  user.biography = biography;
+  user.twitter = twitter;
+  user.instagram = instagram;
+  user.facebook = facebook;
+  await user.save();
 
-  return res.json(req.body);
+  return res.json(user);
 }));
 
 // ------------------------------------------------------------------------------------ //

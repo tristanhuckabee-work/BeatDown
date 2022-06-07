@@ -28,6 +28,15 @@
   background-color: #ffffff;
   color: #000000;
 }
+.edit-user textarea {
+  border: 1px solid #454545;
+  border-radius: 2px;
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 1.25em;
+  height: 100px;
+  width: 250px;
+}
 .edit-user-subm {
   grid-area: subm;
   width: 100%;

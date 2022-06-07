@@ -40,7 +40,10 @@ span.user-span {
   justify-content: flex-start;
 }
 .user-page-pic {
-  background-color: red;
+  background-color: #25252555;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   border-radius: 50%;
   height: 50px;
   width: 50px;
