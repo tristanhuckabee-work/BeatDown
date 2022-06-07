@@ -68,7 +68,7 @@ const UserPage = () => {
         <span className='user-name-pic'>
           <p>@{pageUser.username}</p>
           <div className='user-page-pic'
-            style={{ backgroundImage: `url(${pageUser.profilePic})` }}
+            style={{ backgroundImage: `url(${pageUser.id === sessionUser.id ? sessionUser.instagram : pageUser.instagram})` }}
           ></div>
         </span>
         <span className='user-span social'>
