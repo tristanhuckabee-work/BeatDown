@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useLocation, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentSong } from '../../store/search';
-import Popup from 'reactjs-popup'
+import { setCurrentSong, setEditSong } from '../../store/search';
+// import Popup from 'reactjs-popup'
 import DeleteModal from '../DeleteSongPage/deleteModal';
 import EditUser from '../EditUserModal';
+import Like from '../Like';
 import './userPage.css';
 // ------------------------------------------------------------------------- //
 const UserPage = () => {
@@ -14,10 +15,12 @@ const UserPage = () => {
   const sessionUser = useSelector(state => state.session.user);
   let pageUserPic = pageUser.id === sessionUser.id ? sessionUser.profilePic : pageUser.profilePic
   const songs = useSelector(state => state.search.songs).filter(song => song.artistId === pageUser.id ? true : false);
+  const likes = useSelector(state => state.likes)
 
   useEffect(() => {
     return;
   }, [sessionUser]);
+  const handleEdit = async (song) => await dispatch(setEditSong(song));
   const userPriv = (song) => {
     if (sessionUser) {
       return (
@@ -28,13 +31,13 @@ const UserPage = () => {
               <NavLink to={`/search/songs/${song.id}/edit`}>
                 <i
                   className='fas fa-pen-to-square fa-2x'
-                // onClick={ () => handleEdit(song) }
+                  onClick={ () => handleEdit(song) }
                 ></i>
               </NavLink>
             </>
           )
           }
-          {/* <Like song={song} likes={likes} user={sessionUser.id}/> */}
+          <Like song={song} likes={likes} user={sessionUser.id}/>
         </div>
       )
     }
