@@ -35,7 +35,10 @@ function App() {
   const likes = useSelector( state => state.likes );
 
   const handleEdit =      async (song) => await dispatch(setEditSong(song));
-  const handleSongClick = async (song) => await dispatch(setCurrentSong(song));
+  const handleSongClick = async (song) => {
+    await dispatch(setCurrentSong(song));
+    history.push(`/songs/${song.id}`);
+  }
   const handlePClick = (e, user) => {
     e.stopPropagation();
 
@@ -120,6 +123,20 @@ function App() {
       <Switch>
         <Route exact path='/'>
           { chooseMain() }
+        </Route>
+        <Route path='/songs/:id'>
+          <>
+            <p>yo</p>
+            <p>yo</p>
+            <p>yo</p>
+            <p>yo</p>
+            <p>yo</p>
+            <p>yo</p>
+            <p>yo</p>
+            <p>yo</p>
+            <p>yo</p>
+            <p>yo</p>
+          </>
         </Route>
         <Route path='/search/songs/new'>
           <CreateSongPage />
