@@ -86,6 +86,8 @@ header a:hover {
 .signOut:hover { 
   background-color: #cc0000;
 }
+.user { cursor: pointer }
+.user:hover { color: #cc0000; }
 .userInfo {
   display: flex;
   align-items: center;

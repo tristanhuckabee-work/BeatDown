@@ -1,6 +1,6 @@
  import React, { useState, useEffect } from 'react';
  import { useHistory } from 'react-router-dom'
- import { useDispatch } from 'react-redux';
+ import { useDispatch, useSelector } from 'react-redux';
  import * as sessionActions from '../../store/session';
  
  // ------------------------------------------------------------------------ //
@@ -9,6 +9,7 @@ const ProfileButton = ({ user }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
+  // const user = useSelector(state => state.session.user);
   
   const openMenu = () => {
     if (showMenu) return;
@@ -30,6 +31,15 @@ const ProfileButton = ({ user }) => {
     dispatch(sessionActions.logout());
     history.push('/');
   };
+  const goToPage = e => {
+    e.stopPropagation();
+
+    history.push({
+      pathname: `/u/${user.username}`,
+      state: user
+    })
+    setShowMenu(false);
+  }
 
   return (
     <>
@@ -38,11 +48,11 @@ const ProfileButton = ({ user }) => {
       </button>
       {showMenu && (
         <ul className='profile-dropdown'>
-          <li className='user'>{user.username}</li>
+          <li className='user' onClick={goToPage}>{user.username}</li>
           <li>{user.email}</li>
           <hr />
-          <li className='signOut'>
-            <i className='fas fa-right-from-bracket fa-2x' onClick={logout} />
+          <li className='signOut' onClick={logout}>
+            <i className='fas fa-right-from-bracket fa-2x' />
           </li>
         </ul>
       )}

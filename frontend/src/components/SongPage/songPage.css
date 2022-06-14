@@ -1,0 +1,78 @@
+.song-page-container {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 3fr 1fr;
+  grid-template-areas:
+    'top top'
+    'left right';
+  margin: 60px 20% 0 20%;
+  width: 60vw;
+}
+.song-info {
+  align-items: center;
+  background-attachment: scroll;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  grid-area: top;
+  height: 300px;
+  justify-content: flex-end;
+  width: 100%;
+}
+.song-info-bar {
+  align-items: center;
+  background-color: #222222aa;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  width: 100%;
+  min-height: 20px;
+}
+.song-info-bar h2 { color: #eee }
+.song-info-like {
+  align-items: center;
+  display: flex;
+  gap: 5px;
+  justify-content: flex-end;
+}
+.song-info-like p { color: #eee }
+.comments {
+  background-color: yellow;
+  grid-area: left;
+  height: 300px;
+  width: 100%;
+}
+.artist-info {
+  align-items: center;
+  background-color: #25252555;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  grid-area: right;
+  justify-content: space-between;
+  padding-top: 5px;
+  width: 100%;
+}
+.artist-info-pic {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+}
+.song-page-user-priv {
+  align-items: center;
+  background-color: #222222aa;
+  border-radius: 0 0 10px 10px;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 5px 0;
+  width: 100%;
+}
+.song-page-user-priv i { color: #eee}
+.song-page-user-priv i:hover { color: #f00 }

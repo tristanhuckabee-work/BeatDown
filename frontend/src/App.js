@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 import * as sessionActions from './store/session';
 import { getAllSongs, setCurrentSong, setEditSong } from './store/search.js';
 import { getAllLikes } from './store/like.js';
+import SongPage from './components/SongPage';
 
 // ------------------------------------------------------------------------- //
 
@@ -35,7 +36,15 @@ function App() {
   const likes = useSelector( state => state.likes );
 
   const handleEdit =      async (song) => await dispatch(setEditSong(song));
-  const handleSongClick = async (song) => await dispatch(setCurrentSong(song));
+  const handleSongClick = async (song) => {
+    await dispatch(setCurrentSong(song));
+    if (sessionUser) {
+      history.push({
+        pathname: `/songs/${song.id}`,
+        state: song
+      });
+    }
+  }
   const handlePClick = (e, user) => {
     e.stopPropagation();
 
@@ -120,6 +129,9 @@ function App() {
       <Switch>
         <Route exact path='/'>
           { chooseMain() }
+        </Route>
+        <Route path='/songs/:id'>
+          <SongPage />
         </Route>
         <Route path='/search/songs/new'>
           <CreateSongPage />
