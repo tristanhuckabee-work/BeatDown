@@ -49,6 +49,7 @@
   align-items: center;
   background-color: #25252555;
   border-radius: 10px;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   grid-area: right;
@@ -65,8 +66,13 @@
   width: 200px;
 }
 .song-page-user-priv {
+  align-items: center;
   background-color: #222222aa;
   border-radius: 0 0 10px 10px;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 5px 0;
   width: 100%;
-  min-height: 20px;
 }
+.song-page-user-priv i { color: #eee}
+.song-page-user-priv i:hover { color: #f00 }

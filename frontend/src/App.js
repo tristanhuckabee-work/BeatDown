@@ -38,10 +38,12 @@ function App() {
   const handleEdit =      async (song) => await dispatch(setEditSong(song));
   const handleSongClick = async (song) => {
     await dispatch(setCurrentSong(song));
-    history.push({
-      pathname: `/songs/${song.id}`,
-      state: song
-    });
+    if (sessionUser) {
+      history.push({
+        pathname: `/songs/${song.id}`,
+        state: song
+      });
+    }
   }
   const handlePClick = (e, user) => {
     e.stopPropagation();
