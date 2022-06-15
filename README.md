@@ -41,6 +41,7 @@ Anyone can view and listen to a track.
 Logged in Users may...
 - Add, Edit, Delete Songs
 - Like and Unlike Songs
+- Comment on Songs
 
 ## Problems, Solutions, and Outcomes
 ### Problem: If a song is 'liked' on-load then you can not 'unlike'...
