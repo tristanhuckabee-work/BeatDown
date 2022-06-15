@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useLocation, NavLink } from 'react-router-dom';
+import { useLocation, NavLink, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentSong, setEditSong } from '../../store/search';
 import DeleteModal from '../DeleteSongPage/deleteModal';
@@ -9,6 +9,7 @@ import './userPage.css';
 // ------------------------------------------------------------------------- //
 const UserPage = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const location = useLocation();
   const pageUser = location.state;
   const sessionUser = useSelector(state => state.session.user);
@@ -30,19 +31,25 @@ const UserPage = () => {
               <NavLink to={`/search/songs/${song.id}/edit`}>
                 <i
                   className='fas fa-pen-to-square fa-2x'
-                  onClick={ () => handleEdit(song) }
+                  onClick={() => handleEdit(song)}
                 ></i>
               </NavLink>
             </>
           )
           }
-          <Like song={song} likes={likes} user={sessionUser.id}/>
+          <Like song={song} likes={likes} user={sessionUser.id} />
         </div>
       )
     }
   }
   const handleSongClick = async (song) => {
     await dispatch(setCurrentSong(song))
+    if (sessionUser) {
+      history.push({
+        pathname: `/songs/${song.id}`,
+        state: song
+      });
+    }
   }
 
   return (
