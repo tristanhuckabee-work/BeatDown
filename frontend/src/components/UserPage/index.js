@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useLocation, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentSong, setEditSong } from '../../store/search';
-// import Popup from 'reactjs-popup'
 import DeleteModal from '../DeleteSongPage/deleteModal';
 import EditUser from '../EditUserModal';
 import Like from '../Like';

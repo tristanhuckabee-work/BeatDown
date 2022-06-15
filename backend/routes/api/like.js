@@ -8,7 +8,6 @@ const db = require('../../db/models');
 
 // CREATE LIKE
 router.post( '/add', asyncHandler( async (req, res) => {
-  console.log('INSIDE CREATE API: ', req.body)
   const like = db.Like.build(req.body);
   await like.save();
 
