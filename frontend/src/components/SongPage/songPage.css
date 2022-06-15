@@ -40,20 +40,75 @@
 }
 .song-info-like p { color: #eee }
 .comments {
-  background-color: yellow;
   grid-area: left;
-  height: 300px;
+  padding: 0;
   width: 100%;
 }
+.no-comments {
+  width: 100%;
+  text-align: center;
+}
+#addComment {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  width: 100%;
+}
+#addComment .comment-text {
+  width: 80%;
+}
+.comment-text input {
+  background-color: #252525;
+  border: none;
+  border-radius: 5px;
+  color: #eee;
+  height: 30px;
+}
+.comment-text p {
+  color: red;
+  font-size: 0.75em;
+}
+#create-comment {
+  background-color: transparent;
+  border: 1px solid #f00;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 30px;
+  transition: all 0.2s linear;
+  width: 18%;
+}
+#create-comment:hover {
+  background-color: #f00;
+  color: #fff;
+}
+.comment-text input { width: 100% }
+.comment-user {
+  align-items: center;
+  background-color: #00000011;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+.comment-user span { color: #fff; padding: 5px }
+.comment-user span:hover { color: #f00}
+.comment-username {
+  font-weight: bold;
+  padding: 5px 0;
+  line-height: 0em
+}
+.comment { padding-left: 20px }
+.comment-date { font-size: 0.75em; font-weight: bold; }
+
 .artist-info {
   align-items: center;
-  background-color: #25252555;
-  border-radius: 10px;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   grid-area: right;
-  justify-content: space-between;
+  height: auto;
+  justify-content: flex-start;
   padding-top: 5px;
   width: 100%;
 }
@@ -62,17 +117,19 @@
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 50%;
+  cursor: pointer;
   height: 200px;
   width: 200px;
 }
+.artist-info h2 { cursor:pointer }
 .song-page-user-priv {
   align-items: center;
   background-color: #222222aa;
-  border-radius: 0 0 10px 10px;
+  border-radius: 50px;
   display: flex;
   justify-content: space-evenly;
   padding: 5px 0;
   width: 100%;
 }
-.song-page-user-priv i { color: #eee}
+.song-page-user-priv i { color: #eee }
 .song-page-user-priv i:hover { color: #f00 }
